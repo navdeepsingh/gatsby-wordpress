@@ -27,6 +27,41 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        // I have created a dummy site for us to use with the plugins we discussed
+        baseUrl: "localhost/wp-benezol",
+        protocol: "http",
+        hostingWPCOM: false,
+        // We will be using some advanced custom fields
+        useACF: true,
+        acfOptionPageIds: [],
+        verboseOutput: false,
+        perPage: 100,
+        searchAndReplaceContentUrls: {
+          sourceUrl: "http://localhost/wp-benezol",
+          replacementUrl: "http://localhost:3001",
+        },
+        // Set how many simultaneous requests are sent at once.
+        concurrentRequests: 10,
+        includedRoutes: [
+          "**/categories",
+          "**/posts",
+          "**/pages",
+          "**/media",
+          "**/tags",
+          "**/taxonomies",
+          "**/users",
+        ],
+        excludedRoutes: [],
+        normalizer: function ({ entities }) {
+          return entities
+        },
+      },
+    },
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
