@@ -3,6 +3,7 @@ module.exports = {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+    siteUrl: ``
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -38,7 +39,7 @@ module.exports = {
         useACF: true,
         acfOptionPageIds: [],
         verboseOutput: false,
-        perPage: 100,      
+        perPage: 100,
         // Set how many simultaneous requests are sent at once.
         concurrentRequests: 10,
         includedRoutes: [
