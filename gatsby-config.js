@@ -31,18 +31,14 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         // I have created a dummy site for us to use with the plugins we discussed
-        baseUrl: "localhost/wp-benezol",
+        baseUrl: "54.91.30.237/wp-benezol",
         protocol: "http",
         hostingWPCOM: false,
         // We will be using some advanced custom fields
         useACF: true,
         acfOptionPageIds: [],
         verboseOutput: false,
-        perPage: 100,
-        searchAndReplaceContentUrls: {
-          sourceUrl: "http://localhost/wp-benezol",
-          replacementUrl: "http://localhost:3001",
-        },
+        perPage: 100,      
         // Set how many simultaneous requests are sent at once.
         concurrentRequests: 10,
         includedRoutes: [
