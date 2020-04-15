@@ -1,6 +1,10 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Gatsby & Wordpress Site`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsby-wordpress-benezol.netlify.com/`
@@ -32,7 +36,7 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         // I have created a dummy site for us to use with the plugins we discussed
-        baseUrl: "54.91.30.237/wp-benezol",
+        baseUrl: process.env.GATSBY_API_URL,
         protocol: "http",
         hostingWPCOM: false,
         // We will be using some advanced custom fields
