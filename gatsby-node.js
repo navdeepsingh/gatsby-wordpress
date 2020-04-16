@@ -41,6 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: BlogPostTemplate,
       context: {
         id: post.node.wordpress_id,
+        slug: post.node.slug,
       },
     })
     const Pages = result.data.allWordpressPage.edges
@@ -50,6 +51,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         component: PageTemplate,
         context: {
           id: page.node.wordpress_id,
+          slug: page.node.slug,
         },
       })
     })

@@ -42,13 +42,14 @@ module.exports = {
         // We will be using some advanced custom fields
         useACF: true,
         acfOptionPageIds: [],
-        verboseOutput: false,
+        verboseOutput: true,
         perPage: 100,
         // Set how many simultaneous requests are sent at once.
         concurrentRequests: 10,
         includedRoutes: [
           "**/categories",
           "**/posts",
+          "**/slick_slider",
           "**/pages",
           "**/media",
           "**/tags",
