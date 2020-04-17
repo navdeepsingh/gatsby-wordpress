@@ -49,7 +49,7 @@ module.exports = {
         includedRoutes: [
           "**/categories",
           "**/posts",
-          "**/slick_slider",
+          "**/slider",
           "**/pages",
           "**/media",
           "**/tags",
