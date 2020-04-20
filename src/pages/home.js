@@ -1,25 +1,23 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout.js"
+import Layout from "../components/layout"
 import SEO from "../components/seo"
-import "../sass/style.scss"
+import Slideshow from "../components/slideshow"
+import { graphql } from 'gatsby'
 
-const PageTemplate = ({ data }) => (
+const HomePage = ({ data }) => (
   <Layout>
-    <SEO
-      title={data.wordpressPage.title}
-      description={data.wordpressPage.excerpt}
-    />
+    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <Slideshow />
     <h1>{data.wordpressPage.title}</h1>
     <h3>{data.wordpressPage.acf.page_subtitle}</h3>
     <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
   </Layout>
 )
-export default PageTemplate
+export default HomePage
 
 export const query = graphql`
-  query($id: Int!) {
-    wordpressPage(wordpress_id: { eq: $id }) {
+  query {
+    wordpressPage(slug: {eq: "home"}) {
       title
       excerpt
       content

@@ -28,6 +28,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
+      allWordpressWpRecipe {
+        edges {
+          node {
+            slug
+            wordpress_id
+          }
+        }
+      }
     }
   `)
   if (result.errors) {
@@ -44,16 +52,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         slug: post.node.slug,
       },
     })
-    const Pages = result.data.allWordpressPage.edges
-    Pages.forEach(page => {
-      createPage({
-        path: `/${page.node.slug}`,
-        component: PageTemplate,
-        context: {
-          id: page.node.wordpress_id,
-          slug: page.node.slug,
-        },
-      })
+  })
+  const Pages = result.data.allWordpressPage.edges
+  Pages.forEach(page => {
+    createPage({
+      path: `/${page.node.slug}`,
+      component: PageTemplate,
+      context: {
+        id: page.node.wordpress_id,
+        slug: page.node.slug,
+      },
+    })
+  })
+  const Recipes = result.data.allWordpressWpRecipe.edges
+  Recipes.forEach(recipe => {
+    createPage({
+      path: `/recipe/${recipe.node.slug}`,
+      component: PageTemplate,
+      context: {
+        id: recipe.node.wordpress_id,
+        slug: recipe.node.slug,
+      },
     })
   })
 }

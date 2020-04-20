@@ -42,7 +42,7 @@ module.exports = {
         // We will be using some advanced custom fields
         useACF: true,
         acfOptionPageIds: [],
-        verboseOutput: true,
+        verboseOutput: false,
         perPage: 100,
         // Set how many simultaneous requests are sent at once.
         concurrentRequests: 10,
@@ -50,6 +50,7 @@ module.exports = {
           "**/categories",
           "**/posts",
           "**/slider",
+          "**/recipe",
           "**/pages",
           "**/media",
           "**/tags",
