@@ -10,6 +10,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const BlogPostTemplate = path.resolve("./src/templates/BlogPost.js")
   const PageTemplate = path.resolve("./src/templates/Page.js")
+  const RecipeTemplate = path.resolve("./src/templates/Recipe.js")
   const result = await graphql(`
     {
       allWordpressPost {
@@ -68,7 +69,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   Recipes.forEach(recipe => {
     createPage({
       path: `/recipe/${recipe.node.slug}`,
-      component: PageTemplate,
+      component: RecipeTemplate,
       context: {
         id: recipe.node.wordpress_id,
         slug: recipe.node.slug,
