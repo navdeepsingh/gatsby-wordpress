@@ -11,8 +11,8 @@ const BlogPostTemplate = ({ data }) => (
       Written by {data.wordpressPost.author.name} on {data.wordpressPost.date}
     </p>
     {
-      data.wordpressPost.acf !== null && data.wordpressPost.acf.feat_img !== null
-        ? <Img sizes={data.wordpressPost.acf.feat_img.localFile.childImageSharp.sizes} alt={data.wordpressPost.title} style={{ maxHeight: 450 }} />
+      data.wordpressPost.featured_media !== null
+        ? <Img sizes={data.wordpressPost.featured_media.source_url} alt={data.wordpressPost.title} style={{ maxHeight: 450 }} />
         : ''
     }
     <div style={{ marginTop: 20 }} dangerouslySetInnerHTML={{ __html: data.wordpressPost.content }} />
@@ -29,17 +29,9 @@ export const query = graphql`
       author {
         name
       }
-      acf {
-        feat_img {
-          localFile {
-            childImageSharp {
-              sizes(maxWidth: 1200) {
-                ...GatsbyImageSharpSizes
-              }
-            }
-          }
-        }
-      }
+      featured_media {
+        source_url
+      }      
     }
   }
 `

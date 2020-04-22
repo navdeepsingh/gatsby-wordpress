@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -9,11 +8,11 @@ const PostsPage = ({ data }) => (
     <SEO title="All Posts" />
     <ul style={{ listStyle: "none" }}>
       {data.allWordpressPost.edges.map(post => (
-        <li style={{ padding: "20px 0", borderBottom: "1px solid #ccc" }}>
+        <li style={{ padding: "20px 0", borderBottom: "1px solid #ccc" }} key={post.node.wordpress_id}>
           <Link to={`/post/${post.node.slug}`} style={{ display: "flex", color: "black", textDecoration: "none" }} >
             {
-              post.node.acf.feat_img !== null ?
-                <Img sizes={post.node.acf.feat_img.localFile.childImageSharp.sizes} alt={post.node.title} style={{ width: "25%", marginRight: 20 }} />
+              post.node.featured_media !== null ?
+                <img src={post.node.featured_media.source_url} alt={post.node.title} style={{ width: "25%", marginRight: 20 }} />
                 : ''
             }
             <div style={{ width: "75%" }}>
@@ -37,6 +36,8 @@ export const query = graphql`
     allWordpressPost {
       edges {
         node {
+          id
+          wordpress_id
           title
           excerpt
           slug
@@ -44,6 +45,9 @@ export const query = graphql`
             name
           }
           date(formatString: "MMMM DD, YYYY")
+          featured_media {
+            source_url
+          }
           acf {
             feat_img {
               localFile {
