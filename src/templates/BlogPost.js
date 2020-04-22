@@ -10,7 +10,11 @@ const BlogPostTemplate = ({ data }) => (
     <p>
       Written by {data.wordpressPost.author.name} on {data.wordpressPost.date}
     </p>
-    <Img sizes={data.wordpressPost.acf.feat_img.localFile.childImageSharp.sizes} alt={data.wordpressPost.title} style={{ maxHeight: 450 }} />
+    {
+      data.wordpressPost.acf !== null
+        ? <Img sizes={data.wordpressPost.acf.feat_img.localFile.childImageSharp.sizes} alt={data.wordpressPost.title} style={{ maxHeight: 450 }} />
+        : ''
+    }
     <div style={{ marginTop: 20 }} dangerouslySetInnerHTML={{ __html: data.wordpressPost.content }} />
   </Layout>
 )
