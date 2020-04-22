@@ -37,7 +37,7 @@ module.exports = {
       options: {
         // I have created a dummy site for us to use with the plugins we discussed
         baseUrl: process.env.GATSBY_API_URL,
-        protocol: "https",
+        protocol: "http",
         hostingWPCOM: false,
         // We will be using some advanced custom fields
         useACF: true,
