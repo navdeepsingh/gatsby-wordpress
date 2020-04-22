@@ -11,7 +11,7 @@ const BlogPostTemplate = ({ data }) => (
       Written by {data.wordpressPost.author.name} on {data.wordpressPost.date}
     </p>
     {
-      data.wordpressPost.acf !== null
+      data.wordpressPost.acf.feat_img !== null
         ? <Img sizes={data.wordpressPost.acf.feat_img.localFile.childImageSharp.sizes} alt={data.wordpressPost.title} style={{ maxHeight: 450 }} />
         : ''
     }
