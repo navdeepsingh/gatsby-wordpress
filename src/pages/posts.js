@@ -48,17 +48,6 @@ export const query = graphql`
           featured_media {
             source_url
           }
-          acf {
-            feat_img {
-              localFile {
-                childImageSharp {
-                  sizes(maxWidth: 600) {
-                    ...GatsbyImageSharpSizes
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }    
