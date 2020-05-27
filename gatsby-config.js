@@ -59,16 +59,13 @@ module.exports = {
           "**/*/*/menus", // <== Menu api endpoint
           "**/*/*/menu-locations", // <== Menu api endpoint
         ],
-        excludedRoutes: [],
+        excludedRoutes: ["**/pages/home"],
         normalizer: function ({ entities }) {
           return entities
         },
       },
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-sitemap`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`
   ],
 }
