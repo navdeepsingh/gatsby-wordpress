@@ -33,7 +33,7 @@ export default PostsPage
 
 export const query = graphql`
   query {
-    allWordpressPost {
+    allWordpressPost(filter: {type:{eq: "post"} }) {
       edges {
         node {
           id

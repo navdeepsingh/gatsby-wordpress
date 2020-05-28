@@ -12,6 +12,10 @@ const Header = () => (
           items {
             title
             object_slug
+            wordpress_children {
+              title
+              object_slug
+            }
           }
         }
       }
@@ -25,10 +29,29 @@ const Header = () => (
         </h1>
         <ul class="main-navigation">
           {data.wordpressWpApiMenusMenusItems.items.map(item => (
-            <li key={item.object_slug} style={{ margin: `0 10px` }}>
-              <Link to={`/${item.object_slug}`}>
-                {item.title}
-              </Link>
+            <li key={item.object_slug} style={{ margin: `0 10px` }}>  
+              { 
+                item.wordpress_children
+                ? <>
+                    <Link to={`/`}>
+                      {item.title}
+                    </Link>
+                    <ul>
+                    { 
+                      item.wordpress_children.map(childItem => (
+                        <li key={childItem.object_slug} >
+                          <Link to={`/${childItem.object_slug}`}>
+                            {childItem.title}
+                          </Link>
+                        </li>
+                      )) 
+                    }
+                    </ul>
+                  </>
+                : <Link to={`/${item.object_slug}`}>
+                    {item.title}
+                  </Link>
+              }
             </li>
           ))}
         </ul>
