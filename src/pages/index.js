@@ -4,16 +4,30 @@ import SEO from "../components/seo"
 import Slideshow from "../components/slideshow"
 import { graphql } from 'gatsby'
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <Slideshow />
-    <h1>{data.wordpressPage.title}</h1>
-    <h3>{data.wordpressPage.acf.page_subtitle}</h3>
-    <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
-  </Layout>
-)
-export default IndexPage
+const HomePage = ({ data }) => {
+  const {edges: featuredPosts} = data.allWordpressPost;
+  return (
+    <Layout>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <Slideshow />
+      <h1>{data.wordpressPage.title}</h1>
+      <h3>{data.wordpressPage.acf.page_subtitle}</h3>
+      <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
+      
+      <div className="featured-posts">
+        {
+          featuredPosts.map(({node}) => {
+            return <div style={{padding:'20px'}}>
+                    <h3>{node.title}</h3>
+                    <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                  </div>
+          })
+        }
+      </div>
+    </Layout>
+  )
+}
+export default HomePage
 
 export const query = graphql`
   query {
@@ -23,6 +37,27 @@ export const query = graphql`
       content
       acf {
         page_subtitle
+      }
+    }
+    allWordpressPost(filter: {type: {eq: "post"}, tags: {elemMatch: {slug: {eq: "featured"}}}}) {
+      edges {
+        node {
+          id
+          wordpress_id
+          title
+          excerpt
+          slug
+          tags {
+            slug
+          }
+          author {
+            name
+          }
+          date(formatString: "MMMM DD, YYYY")
+          featured_media {
+            source_url
+          }
+        }
       }
     }
   }

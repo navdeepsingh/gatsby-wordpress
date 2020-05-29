@@ -26,5 +26,9 @@ main {
   margin: 0 auto;
 }
 
+.featured-posts {
+  @include display-flexbox;
+}
+
 /*##############  Footer Styles ###############*/
 
