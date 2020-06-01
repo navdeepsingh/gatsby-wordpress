@@ -28,19 +28,19 @@ export const query = graphql`
   query {
     allWordpressWpRecipe {
       edges {
-      node {
-        id
-        slug
-        status
-        title
-        content        
-        excerpt
-        ingredient
-        course
-        course
-        cuisine
+        node {
+          id
+          slug
+          status
+          title
+          content        
+          excerpt
+          ingredient
+          course
+          course
+          cuisine
+        }
       }
-    }
     }
   }
 `
