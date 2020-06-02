@@ -26,6 +26,40 @@ main {
 
 .slick-slider {
   background-color: $base-color;
+
+  .slide {
+    position: relative;
+  }
+
+  &__image {
+    @include display-flexbox();
+    @include justify-content(flex-end);
+  }
+
+  &__text {
+    position: absolute;
+    z-index: 1000;
+    left: 10%;
+    top: 15%;
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 900;
+      padding-bottom: 0.5em;
+    }
+
+    h2 {
+      font-size: 2.0em;
+      padding-bottom: 0.5em;
+    }
+
+    a {
+      background-color: white;
+      padding: 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+  }
 }
 
 .main-container {

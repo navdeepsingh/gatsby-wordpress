@@ -21,6 +21,11 @@ const Slideshow = () => (
             id
             title
             content
+            acf {
+              heading
+              sub_title
+              link
+            }
           }
         }        
       }
@@ -29,8 +34,14 @@ const Slideshow = () => (
       <Slider {...settings}>
 
         {data.allWordpressWpSlider.nodes.map(slide => (
-          <div key={slide.id} dangerouslySetInnerHTML={{ __html: slide.content }} />
-
+          <div key={slide.id} className="slide">
+            <div className="slick-slider__text">
+              <h1 dangerouslySetInnerHTML={{ __html: slide.acf.heading }} />
+              <h2 dangerouslySetInnerHTML={{ __html: slide.acf.sub_title }} />
+              <a href={slide.acf.link}>About Benecol</a>
+            </div> 
+            <div className="slick-slider__image" dangerouslySetInnerHTML={{ __html: slide.content }} />                       
+          </div>
         ))}
 
       </Slider>
