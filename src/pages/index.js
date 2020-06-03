@@ -11,7 +11,7 @@ const HomePage = ({ data }) => {
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <Slideshow />
-      <div className="main-container">
+      <div className="center-container">
         <h1>{data.wordpressPage.title}</h1>
         <h3>{data.wordpressPage.acf.page_subtitle}</h3>
 

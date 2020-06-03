@@ -62,10 +62,7 @@ main {
   }
 }
 
-.main-container {
-  width: $grid-widescreen;
-  margin: 0 auto;
-}
+
 
 .featured-posts {
   @include display-flexbox;
@@ -75,4 +72,25 @@ main {
 footer {
   background-color: $black;
   color: white;
+
+  .wrapper {    
+    .row {
+      @include display-flexbox();
+      padding: 0.8em;
+
+      .col {
+        padding: 0 $grid-gutter;
+        &:first-child {
+          @include flex-basis(45%);
+          padding-right: 10%;
+        }
+      }
+    }
+  }
+}
+
+/*##############  Helper Styles ###############*/
+.center-container {
+  width: $grid-widescreen;
+  margin: 0 auto;
 }
