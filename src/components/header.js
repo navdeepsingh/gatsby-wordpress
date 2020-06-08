@@ -1,5 +1,6 @@
 import { StaticQuery, graphql, Link } from "gatsby"
 import React from "react"
+import Img from "gatsby-image"
 
 const Header = () => (
   <StaticQuery
@@ -7,6 +8,13 @@ const Header = () => (
       query {
         wordpressSiteMetadata {
           name
+        }
+        placeholderImage: file(relativePath: { eq: "logo.jpg" }) {
+          childImageSharp {
+            fixed(width: 150) {
+              ...GatsbyImageSharpFixed
+            }
+          }
         }
         wordpressWpApiMenusMenusItems(name: { eq: "Main Menu" }) {
           items {
@@ -24,7 +32,7 @@ const Header = () => (
       <header>
         <h1>
           <Link to="/">
-            {data.wordpressSiteMetadata.name}
+            <Img fixed={data.placeholderImage.childImageSharp.fixed} alt={data.wordpressSiteMetadata.name} />         
           </Link>
         </h1>
         <ul class="main-navigation">

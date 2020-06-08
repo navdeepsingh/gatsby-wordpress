@@ -36,9 +36,13 @@ const Slideshow = () => (
         {data.allWordpressWpSlider.nodes.map(slide => (
           <div key={slide.id} className="slide">
             <div className="slick-slider__text">
-              <h1 dangerouslySetInnerHTML={{ __html: slide.acf.heading }} />
-              <h2 dangerouslySetInnerHTML={{ __html: slide.acf.sub_title }} />
-              <a href={slide.acf.link}>About Benecol</a>
+              <div className="slick-slider__text-wrapper">
+                <h1 dangerouslySetInnerHTML={{ __html: slide.acf.heading }} />
+                <h2 dangerouslySetInnerHTML={{ __html: slide.acf.sub_title }} />
+                <div>
+                  <a href={slide.acf.link}>About Benecol</a>
+                </div>                
+              </div>
             </div> 
             <div className="slick-slider__image" dangerouslySetInnerHTML={{ __html: slide.content }} />                       
           </div>
