@@ -128,4 +128,8 @@
   }
   
   
+  @mixin center-wrapper() {
+    width: $grid-widescreen;
+    margin: 0 auto;  
+  }
   

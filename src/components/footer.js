@@ -13,6 +13,20 @@ const Footer = () => (
                       }
                     }
                 }
+                fbIcon: file(relativePath: { eq: "fb.png" }) {
+                    childImageSharp {
+                        fixed(width: 13) {
+                            ...GatsbyImageSharpFixed
+                          }
+                    }
+                }
+                yTubeIcon: file(relativePath: { eq: "ytube.png" }) {
+                    childImageSharp {
+                        fixed(width: 25) {
+                            ...GatsbyImageSharpFixed
+                          }
+                    }
+                }
                 footerMenu1: wordpressWpApiMenusMenusItems(name: { eq: "Footer Menu1" }) {
                     items {
                         title
@@ -30,14 +44,14 @@ const Footer = () => (
         `}
         render={data => (
             <footer>
-                <div className="wrapper center-container">
-                    <div class="row">
+                <div className="wrapper">
+                    <div className="row">
                         <div className="col">
                             <Img fixed={data.placeholderImage.childImageSharp.fixed} />         
                             <p>Benecol&reg; foods were launched in Ingmar's home country of Finland in 1995 as part as part of major public health initiative to lower the nation's cholestrol.</p>
                         </div>
-                        <div className="col">
-                            <ul>
+                        <div className="col m-pt">
+                            <ul className="footer-navigation">
                             {data.footerMenu1.items.map(item => (
                                 <li key={item.object_slug} style={{ margin: `0 10px` }}>  
                                 { 
@@ -48,7 +62,7 @@ const Footer = () => (
                             </ul>
                         </div>
                         <div className="col">
-                            <ul>
+                            <ul className="footer-navigation">
                             {data.footerMenu2.items.map(item => (
                                 <li key={item.object_slug} style={{ margin: `0 10px` }}>  
                                 { 
@@ -57,6 +71,22 @@ const Footer = () => (
                                 </li>
                             ))}   
                             </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className="wrapper wrapper--separator">                        
+                    <div className="row">
+                        <div className="col">&copy; {new Date().getFullYear()} Benecol Limited. All rights reserved.</div>
+                        <div className="col follow">
+                            <div className="follow--text">FOLLOW US</div>
+                            <div className="follow--icons">
+                                <a href="http://google.com">
+                                    <Img fixed={data.fbIcon.childImageSharp.fixed} />
+                                </a>
+                                <a href="http://google.com">
+                                    <Img fixed={data.yTubeIcon.childImageSharp.fixed} />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>            

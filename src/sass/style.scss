@@ -11,12 +11,24 @@ header {
   @include justify-content(space-between);
   width: 100%;
   padding: 10px 40px;
+  background-color: white;
+
+  @include media-query($small) {
+    align-self: center;
+    padding: 10px 25px;
+    position: fixed;
+    z-index: 100;
+  }
 
   ul.main-navigation {
     @include display-flexbox();
     @include align-items(stretch);
     @include justify-content(space-between);
     width: auto;
+
+    @include media-query($small) {
+      display: none;
+    }
 
     li {
       position: relative;
@@ -64,11 +76,49 @@ header {
       }
     }
   }
+
+  nav {
+    a {
+      text-decoration: none;
+      color: $black;
+      font-weight: 900;
+      padding: 0.8em 0;
+      display: block;
+      border-bottom:  1px solid lighten($color: $black, $amount: 80);
+
+      &.show {
+        color: $base-color;  
+        border-bottom: none;      
+      }
+    }
+
+    ul.dropdown {
+      display: none;
+      list-style: circle;
+      padding-left: 20px;
+      
+
+      &.show {
+        display: block;
+        border-bottom:  1px solid lighten($color: $black, $amount: 80);
+      }
+
+      li {
+        a {
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }
 
 /*##############  Main Styles ###############*/
 main {
   overflow: hidden;
+
+  @include media-query($small) {
+    padding-top: 103px;
+  }
 }
 
 .slick-slider {
@@ -150,24 +200,166 @@ footer {
   background-color: $black;
   color: white;
 
-  .wrapper {    
+  .wrapper {
+    @include center-wrapper();
+    
+    @include media-query($large-down) {
+      width: 100%;
+    }
+
     .row {
       @include display-flexbox();
       padding: 0.8em;
 
+      @include media-query($small) {
+        @include flex-direction(column);
+      }
+
       .col {
         padding: 0 $grid-gutter;
+        
+
         &:first-child {
           @include flex-basis(45%);
           padding-right: 10%;
         }
       }
     }
+
+    &--separator {
+      border-top: 1px solid lighten($color: $black, $amount: 10);
+      .row {
+        @include justify-content(space-between);
+
+        .col {
+          &:first-child {
+            @include flex-basis(50%);
+            padding-right: 0.8em; 
+          }
+          &:last-child {
+            align-self: flex-end;
+            display: flex;
+            @include justify-content(center);
+            @include align-items(center);
+
+            @include media-query($small) {
+              align-self: center;
+            }
+          }
+        }
+      }
+    }
+
+    .footer-navigation {  
+      padding-top: 60px;    
+
+      @include media-query($small) {
+        padding-top: 0px; 
+      }
+
+      li {
+
+        @include media-query($small) {
+          margin: 0 !important;
+        }
+
+        a {
+          color: $base-color;
+          text-decoration: none;
+        }        
+      }
+    }
   }
+
+  .follow {
+    &--text {
+      padding-right: 0.8em;
+    }
+    &--icons {
+      a {
+        padding-left: 0.8em;
+      }
+    }
+  }
+  
 }
 
 /*##############  Helper Styles ###############*/
 .center-container {
   width: $grid-widescreen;
   margin: 0 auto;
+}
+
+@include media-query($small) {
+  .m-pt {
+    padding-top: 1em !important;
+  }
+}
+
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: white;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em 0;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }
