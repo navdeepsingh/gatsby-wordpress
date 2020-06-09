@@ -28,8 +28,8 @@ const Header = () => (
         }
         placeholderImage: file(relativePath: { eq: "logo.jpg" }) {
           childImageSharp {
-            fixed(width: 150) {
-              ...GatsbyImageSharpFixed
+            fixed(width: 150, quality: 100) {
+              ...GatsbyImageSharpFixed_tracedSVG
             }
           }
         }
@@ -54,7 +54,7 @@ const Header = () => (
         </h1>
         <ul className="main-navigation">          
           {data.wordpressWpApiMenusMenusItems.items.map(item => (
-            <li key={item.object_slug} style={{ margin: `0 10px` }}>  
+            <li key={item.object_slug}>  
               { 
                 item.wordpress_children
                 ? <>
@@ -80,32 +80,55 @@ const Header = () => (
             </li>
           ))}
         </ul>
-        <Menu right width={ '100%' } className="mobile-menu">
-        {
-          data.wordpressWpApiMenusMenusItems.items.map(item => (
-          item.wordpress_children
-          ? <>
-              <Link to={`/`} onClick={handleClick} className="has-child">
-                {item.title}
+        <div className="mobile-navbar">          
+          <Menu right width={ '100%' }>
+            <h1>
+              <Link to="/">
+                <Img fixed={data.placeholderImage.childImageSharp.fixed} alt={data.wordpressSiteMetadata.name} />         
               </Link>
-              <ul className="dropdown" aria-hidden="false">
-              { 
-                item.wordpress_children.map(childItem => (
-                  <li key={childItem.object_slug} >
-                    <Link to={`/${childItem.object_slug}`}>
-                      {childItem.title}
-                    </Link>
-                  </li>
-                )) 
-              }
-              </ul>
-            </>
-          : <Link to={`/${item.object_slug}`}>
-              {item.title}
-            </Link>
-          )
-        )}
-        </Menu>
+            </h1>
+            <ul className="mobile-navigation">
+              {
+                data.wordpressWpApiMenusMenusItems.items.map(item => (
+                <li key={item.object_slug}>  
+                { 
+                item.wordpress_children
+                ? <>
+                      <Link to={`/`} onClick={handleClick} className="has-child">
+                      {item.title}
+                      </Link>                   
+                      <ul className="dropdown" aria-hidden="false">
+                      { 
+                        item.wordpress_children.map(childItem => (
+                          <li key={childItem.object_slug} >
+                            <Link to={`/${childItem.object_slug}`}>
+                              {childItem.title}
+                            </Link>
+                          </li>
+                        )) 
+                      }
+                      </ul>
+                  </>
+                : <Link to={`/${item.object_slug}`}>
+                    {item.title}
+                  </Link>
+                }
+                </li>
+                ))}
+            </ul>
+            <div className="follow">
+                <div className="follow--text">FOLLOW US</div>
+                <div className="follow--icons">
+                    <a href="http://google.com">
+                      <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAApUlEQVRIie3SsQkCQRCF4U8zwUCswszIHixBi7ABa7AGmzmt4RIFsQETozM4I1GPW3TPDUTvwcCyy5v/7TD8mwZYYYcLChwwTtF8iBxlTS1Cpm4EYIlR4O0U0SeovefUa8wwFRc0qKIC6L1j6kQAyibeJF/7BLB1H0lVt/szJk0D1K1kXc1DDVKN6NjUmHmdPkc/1OD3t6gFtIC0gM3DOUsd5Ht1BfnVM9MF+929AAAAAElFTkSuQmCC"/>
+                    </a>
+                    <a href="http://google.com">
+                      <img alt="" width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACP0lEQVRoge3ZzW8NURjH8Y9yExKhJUWQqKRNy0bY+AcqYuOPsJHY2EosbKwl/hgWXtI/QEgjCCmCtA0qbQnqrWVx7iTT09GZ25n7QuabPMnMycx5nt+ZM895o6ampqampsamgs81MIwRHMA+7Mdu7EA/djavG813tmJbqo7P+Nm8XsKnlM3jPd5hGrN4ijcb0LSGIVzFQ/zA7y7YR0zgvNAwLXNOaMFuBP83e4SjrYg4i+UeCDzLXmEwK+jNGfe3hD7fi/QLjXw378Fjut/qefYyK/C+6H44T2kPcFjIkKuIhRzqTCylGY0L/lUhR+KCWMhQSQenhDTZbsbiglhIZmprgTs4LgxgcyXrWo/cnjOpXEZJswvXhWlJ1Znrdp6QqQqFJIziRsVCJvOEzLRBSMK48P9UIWQmT8hiG4UQZsYXsVDSz3c5M/eys9yiJP/PrxK+Vg2KcdbqFEXXQRuuo+wnzyPpWmW78LKcjzDdRiHjeFyy/sTmc3x51gYhY6pPv5kz4DQPKhTSzgHxfhz4luj+S57SAjRwAVcwUEF9WSzGBbGQtyUdnME1GZO6ipmNC2Ihz0s6uFny/aK8iAviFFZWSKdY87P/t0KeYKUzsWyYFWGYWEUsZE7Y2etlJhRctJ3AV9Xn/irsG062ovq0sKHc7cDT9kHYBW2ZQVzCPWH3vBvBLzX9X8ae9YItOp3uExb8I8JxwkHsbdqAcJyQWHKU0MD2VB3rHSssCD0gfawwhdd6P/nU1NTU1NT0Dn8AGXx2NWoKMM8AAAAASUVORK5CYII="/>
+                    </a>
+                </div>
+            </div> 
+          </Menu> 
+        </div>        
       </header>
     )}
   />

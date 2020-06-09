@@ -22,6 +22,12 @@ body {
   line-height: 1.5em;
 }
 
+*, ::after, ::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /*##############  Header Styles ###############*/
 header {
   @include display-flexbox();
@@ -31,12 +37,12 @@ header {
   width: 100%;
   padding: 10px 40px;
   background-color: white;
+  position: fixed;
+  z-index: 100;
 
   @include media-query($small) {
     align-self: center;
-    padding: 10px 25px;
-    position: fixed;
-    z-index: 100;
+    padding: 10px 25px;    
   }
 
   ul.main-navigation {
@@ -45,7 +51,7 @@ header {
     @include justify-content(space-between);
     width: auto;
 
-    @include media-query($small) {
+    @include media-query($medium-down) {
       display: none;
     }
 
@@ -53,6 +59,7 @@ header {
       position: relative;
       display: flex;
       @include align-items(center);
+      margin: 0 1.5em;
       
       &:hover {
         cursor: pointer;
@@ -64,6 +71,7 @@ header {
           }
         }
       }
+
       a {
         color: $black;
         font-family: GothamBookMedium, sans-serif;
@@ -73,7 +81,7 @@ header {
       ul {
         display: none;
         position: absolute;  
-        bottom: -60px;
+        bottom: -70px;
         padding: 5px;        
         width: 150px;              
         background-color: white;
@@ -83,9 +91,9 @@ header {
         box-shadow: 1px 0px 24px -4px rgba(0,0,0,0.75);
         z-index: 100;
 
-
         li {
           padding: 0.5em;
+          margin: 0 0.2em;
           a {
             width: 100%;
             &:hover {
@@ -97,50 +105,61 @@ header {
     }
   }
 
-  nav {
-    a {
-      text-decoration: none;
-      color: $black;
-      font-weight: 900;
-      padding: 0.8em 0;
-      display: block;
-      border-bottom:  1px solid lighten($color: $black, $amount: 80);
-
-      &.show {
-        color: $base-color;  
-        border-bottom: none;      
-      }
-    }
-
-    ul.dropdown {
-      display: none;
-      list-style: circle;
-      padding-left: 20px;
-      
-
-      &.show {
+  ul.mobile-navigation {
+    padding-top: 1.2em; 
+    li {
+      a {
+        text-decoration: none;
+        color: $black;
+        font-weight: 900;
+        padding: 0.8em 0;
         display: block;
         border-bottom:  1px solid lighten($color: $black, $amount: 80);
+
+        &.show {
+          color: $base-color;  
+          border-bottom: none;      
+        }
       }
 
-      li {
-        a {
-          border-bottom: none;
+      ul.dropdown {
+        display: none;
+        list-style: circle;
+        padding-left: 20px;
+        
+
+        &.show {
+          display: block;
+          border-bottom:  1px solid lighten($color: $black, $amount: 80);
+        }
+
+        li {
+          a {
+            border-bottom: none;
+          }
         }
       }
     }
   }
-}
 
-/*##############  Main Styles ###############*/
-main {
-  overflow: hidden;
+  .mobile-navbar {
+    .follow {
+      display: flex !important;
+      @include justify-content(center);
+      text-align: center;
+      color: $black;
+      font-weight: 900;
+      padding-top: 2em;
 
-  @include media-query($small) {
-    padding-top: 103px;
+      &--icons {
+        display: flex;
+      }
+    }
   }
+
 }
 
+/*##############  Home Slider Styles ###############*/
 .slick-slider {
   background-color: $base-color;
 
@@ -172,45 +191,67 @@ main {
     @include justify-content(flex-end);
   }
 
-  &__text {
-    position: absolute;
-    z-index: 1000;
-    height: 100%;
-    left: 15%;
+  @include banner-text();
+}
 
-    &-wrapper {
-      height: 100%;
-      @include display-flexbox();
-      @include justify-content(center);
-      @include flex-direction(column);
-    }
+/*##############  Banner Styles ###############*/
+.banner {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 600px;
+  position: relative;
 
+  @include media-query($medium-down) {
+    background-size: contain;
+    height: 400px;
+  }
+
+  &.light {
     h1 {
-      font-size: 3em;
-      font-family: GothamBookMedium, sans-serif;
-      padding-bottom: 0.5em;
-      color: white;
-
+      color: $cyan-dark;
     }
-
-    h2 {
-      font-size: 2.0em;
-      padding-bottom: 1.0em;
-      color: white;
+    p {
+      color: $black;
     }
-
     a {
-      background-color: white;
-      padding: 15px 30px;
-      border-radius: 30px;
-      display: inline-block;
-      color: $base-color;
-      text-decoration: none;
+      background-color: $base-color;
+      color: white;
+    }
+  }
+
+  @include banner-text();
+
+  &__text {
+    width: 600px;
+
+    @include media-query($medium-down) {
+      width: 60%;
+      left: 2%;
+      h1{
+        font-size: 1em;
+      }
+      p {
+        font-size: 0.8em;
+      }
     }
   }
 }
 
 
+/*##############  Main Styles ###############*/
+main {
+  padding-top: 103px;
+}
+
+.content-wrapper {
+  width: $grid-widescreen;
+  padding: $grid-gutter;
+  margin: 0 auto;
+
+  @include media-query($large-down) {
+    width: 100%;
+  }
+}
 
 .featured-posts {
   @include display-flexbox;
@@ -230,15 +271,17 @@ footer {
 
     .row {
       @include display-flexbox();
-      padding: 2em;
+      padding: 2em 0; 
 
       @include media-query($small) {
         @include flex-direction(column);
       }
 
+      @include media-query($large-down) {
+        padding: 2em;        
+      }
+
       .col {
-        padding: 0 $grid-gutter;
-        
 
         &:first-child {
           @include flex-basis(45%);
@@ -256,16 +299,20 @@ footer {
 
     &--separator {
       border-top: 1px solid lighten($color: $black, $amount: 10);
+
       .row {
         @include justify-content(space-between);
         @include align-items(center);
 
         .col {
+          font-size: 0.9em;
+
           &:first-child {
             @include flex-basis(50%);
-            padding-right: 0.8em; 
+            padding-right: 0.8em;             
           }
-          &:last-child {
+
+          &:last-child {            
             align-self: flex-end;
             display: flex;
             @include justify-content(center);
@@ -273,6 +320,7 @@ footer {
 
             @include media-query($small) {
               align-self: center;
+              padding-top: 0.8em;
             }
           }
         }
@@ -301,17 +349,6 @@ footer {
     }
   }
 
-  .follow {
-    &--text {
-      padding-right: 0.8em;
-    }
-    &--icons {
-      a {
-        padding-left: 0.8em;
-      }
-    }
-  }
-  
 }
 
 /*##############  Helper Styles ###############*/
@@ -319,17 +356,37 @@ footer {
   width: $grid-widescreen;
   margin: 0 auto;
 }
+.follow {
+  &--text {
+    padding-right: 0.8em;
+  }
+  &--icons {
+    a {
+      padding-left: 0.8em;
+    }
+  }
+}
 
 
 /*##############  Media Styles ###############*/
+
+
+@include media-query($medium-up) {
+  .mobile-navbar {
+    display: none;
+  }
+}
+
+@include media-query($medium-down) {
+  .mobile-navbar {
+    display: block;
+  }
+}
+
 @include media-query($small) {
   .m-pt {
     padding-top: 1em !important;
   }
-}
-
-@include media-query($medium-up) {
-  
 }
 
 /*##############  Responsive Navbar Styles ###############*/
@@ -375,7 +432,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
   background: white;
-  padding: 2.5em 1.5em 0;
+  padding: 0 1.5em;
   font-size: 1.15em;
 }
 

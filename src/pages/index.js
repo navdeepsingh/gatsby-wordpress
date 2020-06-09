@@ -5,36 +5,18 @@ import Slideshow from "../components/slideshow"
 import { graphql } from 'gatsby'
 
 const HomePage = ({ data }) => {
-  const {edges: featuredPosts} = data.allWordpressPost;
-  const {edges: featuredRecipes} = data.allWordpressWpRecipe;
+  // const {edges: featuredPosts} = data.allWordpressPost;
+  // const {edges: featuredRecipes} = data.allWordpressWpRecipe;
   return (
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <Slideshow />
-      <div className="center-container">
+      <div className="content-wrapper">
         <h1>{data.wordpressPage.title}</h1>
         <h3>{data.wordpressPage.acf.page_subtitle}</h3>
 
-        <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
+        <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />        
         
-        <div className="featured-posts">
-          {
-            featuredPosts.map(({node}) => {
-              return <div style={{padding:'20px'}}>
-                      <h3>{node.title}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-                    </div>
-            })
-          }
-          {
-            featuredRecipes.map(({node}) => {
-              return <div style={{padding:'20px'}}>
-                      <h3>{node.title}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-                    </div>
-            })
-          }          
-        </div>
       </div>  
     </Layout>
   )

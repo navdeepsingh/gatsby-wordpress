@@ -133,3 +133,61 @@
     margin: 0 auto;  
   }
   
+
+  @mixin banner-text() {
+    &__text {
+      position: absolute;
+      z-index: 1;
+      height: 100%;
+      left: 15%;
+  
+      &-wrapper {
+        height: 100%;
+        @include display-flexbox();
+        @include justify-content(center);
+        @include flex-direction(column);
+      }
+  
+      h1 {
+        font-size: 3em;
+        font-family: GothamBookMedium, sans-serif;
+        padding-bottom: 0.5em;
+        color: white;
+        line-height: 1.2em;
+  
+      }
+  
+      h2 {
+        font-size: 2.0em;
+        padding-bottom: 1.0em;
+        color: white;
+      }
+
+      p {
+        font-size: 1.2em;
+        padding-bottom: 1.0em;
+        color: white;
+      }
+
+      ul {
+        list-style: circle;
+
+        li {
+          padding-bottom: 0.8em;
+
+          &:last-child {
+            padding-bottom: 0em;
+          }
+        }
+      }
+  
+      a {
+        background-color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        display: inline-block;
+        color: $base-color;
+        text-decoration: none;
+      }
+    }
+  }
