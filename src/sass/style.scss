@@ -3,6 +3,25 @@
 @import "./colors.scss";
 @import "./mixins.scss";
 
+/*##############  Preflight Styles ###############*/
+@font-face {
+  font-family: GothamBook;
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/GothamRnd-Book_0.otf");
+}
+@font-face {
+  font-family: GothamBookMedium;
+  font-weight: 900;
+  font-style: normal;
+  src: url("../fonts/GothamRnd-Medium_0.otf");
+}
+
+body {
+  font-family: GothamBook, sans-serif;
+  line-height: 1.5em;
+}
+
 /*##############  Header Styles ###############*/
 header {
   @include display-flexbox();
@@ -47,6 +66,7 @@ header {
       }
       a {
         color: $black;
+        font-family: GothamBookMedium, sans-serif;
         text-decoration: none;
       }
 
@@ -167,9 +187,10 @@ main {
 
     h1 {
       font-size: 3em;
-      font-weight: 900;
+      font-family: GothamBookMedium, sans-serif;
       padding-bottom: 0.5em;
       color: white;
+
     }
 
     h2 {
@@ -209,7 +230,7 @@ footer {
 
     .row {
       @include display-flexbox();
-      padding: 0.8em;
+      padding: 2em;
 
       @include media-query($small) {
         @include flex-direction(column);
@@ -224,12 +245,20 @@ footer {
           padding-right: 10%;
         }
       }
+
+      .intro {
+        font-size: 0.9em;
+        p {
+          padding-top: 1.2em;
+        }
+      }
     }
 
     &--separator {
       border-top: 1px solid lighten($color: $black, $amount: 10);
       .row {
         @include justify-content(space-between);
+        @include align-items(center);
 
         .col {
           &:first-child {
@@ -258,6 +287,7 @@ footer {
       }
 
       li {
+        padding-bottom: 0.8em;
 
         @include media-query($small) {
           margin: 0 !important;
@@ -290,13 +320,19 @@ footer {
   margin: 0 auto;
 }
 
+
+/*##############  Media Styles ###############*/
 @include media-query($small) {
   .m-pt {
     padding-top: 1em !important;
   }
 }
 
+@include media-query($medium-up) {
+  
+}
 
+/*##############  Responsive Navbar Styles ###############*/
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -308,12 +344,12 @@ footer {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: $black;
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: #a90000;
+  background: $base-color;
 }
 
 /* Position and sizing of clickable cross button */

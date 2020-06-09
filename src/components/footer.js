@@ -8,7 +8,7 @@ const Footer = () => (
             query {
                 placeholderImage: file(relativePath: { eq: "logo-small-trans.png" }) {
                     childImageSharp {
-                      fixed(width: 115) {
+                      fixed(width: 90) {
                         ...GatsbyImageSharpFixed
                       }
                     }
@@ -46,7 +46,7 @@ const Footer = () => (
             <footer>
                 <div className="wrapper">
                     <div className="row">
-                        <div className="col">
+                        <div className="col intro">
                             <Img fixed={data.placeholderImage.childImageSharp.fixed} />         
                             <p>Benecol&reg; foods were launched in Ingmar's home country of Finland in 1995 as part as part of major public health initiative to lower the nation's cholestrol.</p>
                         </div>

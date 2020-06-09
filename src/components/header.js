@@ -80,7 +80,7 @@ const Header = () => (
             </li>
           ))}
         </ul>
-        <Menu right width={ '100%' }>
+        <Menu right width={ '100%' } className="mobile-menu">
         {
           data.wordpressWpApiMenusMenusItems.items.map(item => (
           item.wordpress_children
