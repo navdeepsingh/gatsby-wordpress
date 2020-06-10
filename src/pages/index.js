@@ -12,11 +12,7 @@ const HomePage = ({ data }) => {
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <Slideshow />
       <div className="content-wrapper">
-        <h1>{data.wordpressPage.title}</h1>
-        <h3>{data.wordpressPage.acf.page_subtitle}</h3>
-
-        <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />        
-        
+        <div class="content-wrapper--container" dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />                
       </div>  
     </Layout>
   )

@@ -7,19 +7,23 @@ import { graphql, Link } from "gatsby"
 const RecipesPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Recipes</h1>
-    <ul style={{ listStyle: "none" }}>
-      {data.allWordpressWpRecipe.edges.map(recipe => (
-        <li style={{ padding: "20px 0", borderBottom: "1px solid #ccc" }}>
-          <Link to={`/recipe/${recipe.node.slug}`} style={{ display: "flex", color: "black", textDecoration: "none" }} >
-            <div style={{ width: "75%" }}>
-              <h3 dangerouslySetInnerHTML={{ __html: recipe.node.title }} style={{ marginBottom: 0 }} />
-              <div dangerouslySetInnerHTML={{ __html: recipe.node.excerpt }} />
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className="content-wrapper">
+        <div class="content-wrapper--container">
+          <h1>Recipes</h1>
+          <ul style={{ listStyle: "none" }}>
+            {data.allWordpressWpRecipe.edges.map(recipe => (
+              <li style={{ padding: "20px 0", borderBottom: "1px solid #ccc" }}>
+                <Link to={`/recipe/${recipe.node.slug}`} style={{ display: "flex", color: "black", textDecoration: "none" }} >
+                  <div style={{ width: "75%" }}>
+                    <h3 dangerouslySetInnerHTML={{ __html: recipe.node.title }} style={{ marginBottom: 0 }} />
+                    <div dangerouslySetInnerHTML={{ __html: recipe.node.excerpt }} />
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+    </div>        
   </Layout>
 )
 export default RecipesPage

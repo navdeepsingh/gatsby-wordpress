@@ -11,11 +11,9 @@ const PageTemplate = ({ data }) => (
       title={data.wordpressPage.title}
       description={data.wordpressPage.excerpt}
     />
-    <HeroBanner banner={data.wordpressPage.acf} />
-    <div className="content-wrapper">
-      <h1>{data.wordpressPage.title}</h1>
-      <h3>{data.wordpressPage.acf.page_subtitle}</h3>
-      <div dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
+    <HeroBanner banner={data.wordpressPage.acf} title={data.wordpressPage.title} />
+    <div className="content-wrapper">      
+      <div className="content-wrapper--container" dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
     </div>
   </Layout>
 )
