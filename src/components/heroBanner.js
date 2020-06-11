@@ -2,10 +2,17 @@ import React from "react"
 
 
 const HeroBanner = ({banner, title }) => {
-    const bannerImage = banner.feat_img && banner.feat_img.source_url ? banner.feat_img.source_url : "https://d3njy17jeluiri.cloudfront.net/wp-benezol/wp-content/uploads/2020/06/08043547/slide1.jpg";
-
+    const bannerDesktopImage = banner.feat_img && banner.feat_img.source_url ? banner.feat_img.source_url : "https://d3njy17jeluiri.cloudfront.net/wp-benezol/wp-content/uploads/2020/06/08043547/slide1.jpg";
+    const bannerMobileImage = banner.mobile_featured_image && banner.mobile_featured_image.source_url ? banner.mobile_featured_image.source_url : "https://d3njy17jeluiri.cloudfront.net/wp-benezol/wp-content/uploads/2020/06/11061325/bencol-bottles-mobile.jpg";
+    
     return (
-    <div className={["banner", banner.theme].join(" ")} style={{backgroundImage: `url(${bannerImage})`}}>                   
+    <div className={["banner", banner.theme].join(" ")}>                   
+        <div className="banner__image">
+            <picture>
+                <source media="(max-width: 989px)" srcset={bannerMobileImage} />
+                <img src={bannerDesktopImage} alt="" />
+            </picture>
+        </div>
         <div className="banner__text">
             <div className="banner__text-wrapper">
                 {

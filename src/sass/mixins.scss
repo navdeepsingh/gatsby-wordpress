@@ -191,3 +191,12 @@
       }
     }
   }
+
+  @mixin circle-bullets($color: $base-color) {
+    &::before {
+      content: "\26AC";  
+      color: $color; 
+      display: inline-block;
+      padding-right: 0.8em;
+    }
+  }

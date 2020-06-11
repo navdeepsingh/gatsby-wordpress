@@ -64,7 +64,7 @@ header {
       &:hover {
         cursor: pointer;
         ul {
-          display: block;
+          display: block;          
           
           li {
             width: 100%;
@@ -81,15 +81,16 @@ header {
       ul {
         display: none;
         position: absolute;  
-        bottom: -70px;
+        bottom: -80px;
         padding: 5px;        
         width: 150px;              
         background-color: white;
         border-radius: 5px;
-        -webkit-box-shadow: 1px 0px 24px -4px rgba(0,0,0,0.75);
-        -moz-box-shadow: 1px 0px 24px -4px rgba(0,0,0,0.75);
-        box-shadow: 1px 0px 24px -4px rgba(0,0,0,0.75);
+        -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
         z-index: 100;
+        transition: all 2s ease 2s;
 
         li {
           padding: 0.5em;
@@ -115,18 +116,32 @@ header {
         padding: 0.8em 0;
         display: block;
         border-bottom:  1px solid lighten($color: $black, $amount: 80);
+        position: relative;
+
+        &::after {
+          position: absolute;
+          right: 0;
+          font-size: 1.5em;
+        }   
 
         &.show {
           color: $base-color;  
-          border-bottom: none;      
+          border-bottom: none; 
+          &::after {
+            content: "\2212" !important;
+          } 
+        }
+
+        &.has-child {
+          &::after {
+            content: "\002B";
+          }
         }
       }
 
       ul.dropdown {
         display: none;
-        list-style: circle;
-        padding-left: 20px;
-        
+        list-style: none;
 
         &.show {
           display: block;
@@ -134,8 +149,11 @@ header {
         }
 
         li {
+          @include circle-bullets();
+
           a {
             border-bottom: none;
+            display: inline-block;
           }
         }
       }
@@ -195,15 +213,12 @@ header {
 }
 
 /*##############  Banner Styles ###############*/
-.banner {
-  background-size: cover;
-  background-repeat: no-repeat;
+.banner {  
   height: 600px;
   position: relative;
 
   @include media-query($medium-down) {
-    background-size: contain;
-    height: 400px;
+    height: 563px;
   }
 
   &.light {
@@ -219,20 +234,55 @@ header {
     }
   }
 
+  &__image {
+    height: 563px;
+
+    picture {
+      @include display-flexbox();
+      @include justify-content(center);
+      height: 100%;
+
+      img {
+        object-fit: cover; 
+        height: auto;
+        width:100%;
+      }
+    }
+  }
+
   @include banner-text();
 
   &__text {
     width: 600px;
+    left: 10%;
+    top: 0;
+
+    ul {
+      list-style: none;
+      li {
+        @include display-flexbox();
+        @include circle-bullets(white);
+      }
+    }
 
     @include media-query($medium-down) {
-      width: 60%;
-      left: 2%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      padding: 2.4em 2.4em 0;
+
+      &-wrapper {
+        @include justify-content(flex-start);
+      }
       h1{
-        font-size: 1em;
+        font-size: 1.6em;
+        font-weight: 900;
       }
       p {
         font-size: 0.8em;
       }
+
+      
     }
   }
 }
@@ -240,21 +290,21 @@ header {
 
 /*##############  Main Styles ###############*/
 main {
-  padding-top: 103px;
+  padding-top: 108px;
 }
 
 .content-wrapper {  
   background: url('../images/creative1.png') left 20% no-repeat, url('../images/creative2.png') right calc(100% - 30%) no-repeat; 
 
-  @include media-query($large-down) {
-    width: 100%;
-  }
-
   &--container {
-    width: $grid-widescreen;
+    width: $grid-large;
     padding: $grid-gutter;
     padding-top: 4em;
     margin: 0 auto;
+
+    @include media-query($medium-down) {
+      width: 100%;
+    }
 
     h1 {
       font-size: 3em;

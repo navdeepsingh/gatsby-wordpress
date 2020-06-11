@@ -31,6 +31,9 @@ export const query = graphql`
         feat_img {
           source_url
         }
+        mobile_featured_image {
+          source_url
+        }
         link
         link_label
         link_url
