@@ -24,7 +24,7 @@ const HeroBanner = ({banner, title }) => {
                 {
                     banner.link 
                     ? <div>
-                        <a href={banner.link_url}dangerouslySetInnerHTML={{ __html: banner.link_label }} />
+                        <a href={banner.link_url} dangerouslySetInnerHTML={{ __html: banner.link_label }} />
                     </div>                
                     : null
                 }

@@ -132,6 +132,24 @@
     width: $grid-widescreen;
     margin: 0 auto;  
   }
+
+  @mixin banner-image() {
+    &__image {
+      height: 563px;
+  
+      picture {
+        @include display-flexbox();
+        @include justify-content(center);
+        height: 100%;
+  
+        img {
+          object-fit: cover; 
+          height: auto;
+          width:100%;
+        }
+      }
+    }
+  }
   
 
   @mixin banner-text() {
@@ -139,7 +157,9 @@
       position: absolute;
       z-index: 1;
       height: 100%;
-      left: 15%;
+      width: 600px;
+      left: 10%;
+      top: 0;
   
       &-wrapper {
         height: 100%;
@@ -160,6 +180,7 @@
       h2 {
         font-size: 2.0em;
         padding-bottom: 1.0em;
+        line-height: 1.2em;
         color: white;
       }
 
@@ -170,17 +191,14 @@
       }
 
       ul {
-        list-style: circle;
-
+        list-style: none;
         li {
+          @include display-flexbox();
+          @include circle-bullets(white);
           padding-bottom: 0.8em;
-
-          &:last-child {
-            padding-bottom: 0em;
-          }
         }
       }
-  
+
       a {
         background-color: white;
         padding: 15px 30px;
@@ -188,6 +206,26 @@
         display: inline-block;
         color: $base-color;
         text-decoration: none;
+      }
+
+      @include media-query($medium-down) {
+        width: 100%;
+        left: 0;
+        top: 0;
+        padding: 2.4em 2.4em 0;
+  
+        &-wrapper {
+          @include justify-content(flex-start);
+        }
+        h1{
+          font-size: 1.6em;
+          font-weight: 900;
+        }
+        p {
+          font-size: 0.8em;
+        }
+  
+        
       }
     }
   }

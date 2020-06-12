@@ -179,7 +179,6 @@ header {
 
 /*##############  Home Slider Styles ###############*/
 .slick-slider {
-  background-color: $base-color;
 
   .slide {
     position: relative;
@@ -204,10 +203,7 @@ header {
     }
   }
 
-  &__image {
-    @include display-flexbox();
-    @include justify-content(flex-end);
-  }
+  @include banner-image();
 
   @include banner-text();
 }
@@ -234,57 +230,10 @@ header {
     }
   }
 
-  &__image {
-    height: 563px;
-
-    picture {
-      @include display-flexbox();
-      @include justify-content(center);
-      height: 100%;
-
-      img {
-        object-fit: cover; 
-        height: auto;
-        width:100%;
-      }
-    }
-  }
+  @include banner-image();
 
   @include banner-text();
-
-  &__text {
-    width: 600px;
-    left: 10%;
-    top: 0;
-
-    ul {
-      list-style: none;
-      li {
-        @include display-flexbox();
-        @include circle-bullets(white);
-      }
-    }
-
-    @include media-query($medium-down) {
-      width: 100%;
-      left: 0;
-      top: 0;
-      padding: 2.4em 2.4em 0;
-
-      &-wrapper {
-        @include justify-content(flex-start);
-      }
-      h1{
-        font-size: 1.6em;
-        font-weight: 900;
-      }
-      p {
-        font-size: 0.8em;
-      }
-
-      
-    }
-  }
+  
 }
 
 
