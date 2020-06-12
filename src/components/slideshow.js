@@ -16,7 +16,7 @@ const settings = {
 const Slideshow = () => {
   const data = useStaticQuery(graphql`
     {
-      allWordpressWpSlider {
+      allWordpressWpSlider(sort: {fields: [title], order: ASC}) {
         nodes {
           id
           title

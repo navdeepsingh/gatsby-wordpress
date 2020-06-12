@@ -259,6 +259,11 @@ main {
 .content-wrapper {  
   background: url('../images/creative1.png') left 20% no-repeat, url('../images/creative2.png') right calc(100% - 30%) no-repeat; 
 
+  &.benecol { // Benezol Page
+    background: url('../images/creative1.png') left 20% no-repeat, url('../images/heart-doctor.jpg') right 100px bottom -60px no-repeat; 
+    background-size: auto auto, 300px auto;
+  }
+
   &--container {
     width: $grid-large;
     padding: $grid-gutter;

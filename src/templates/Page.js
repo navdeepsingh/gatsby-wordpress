@@ -12,7 +12,7 @@ const PageTemplate = ({ data }) => (
       description={data.wordpressPage.excerpt}
     />
     <HeroBanner banner={data.wordpressPage.acf} title={data.wordpressPage.title} />
-    <div className="content-wrapper">      
+    <div className={["content-wrapper", data.wordpressPage.slug].join(" ")}>      
       <div className="content-wrapper--container" dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />
     </div>
   </Layout>
@@ -23,6 +23,7 @@ export const query = graphql`
   query($id: Int!) {
     wordpressPage(wordpress_id: { eq: $id }) {
       title
+      slug
       excerpt
       content
       acf {
