@@ -26,6 +26,7 @@ const Slideshow = () => {
             sub_title
             link
             link_label
+            theme
             slider_image {
               source_url
             }
@@ -46,7 +47,7 @@ const Slideshow = () => {
       const sliderMobileImage = slide.acf.mobile_image && slide.acf.mobile_image.source_url ? slide.acf.mobile_image.source_url : "https://d3njy17jeluiri.cloudfront.net/wp-benezol/wp-content/uploads/2020/06/11061325/bencol-bottles-mobile.jpg";
 
       return (
-        <div key={slide.id} className="slide">
+        <div key={slide.id} className={['slide', slide.acf.theme].join(" ")}>
           <div className="slick-slider__image">
             <picture>
                 <source media="(max-width: 989px)" srcset={sliderMobileImage} />

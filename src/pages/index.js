@@ -12,7 +12,8 @@ const HomePage = ({ data }) => {
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <Slideshow />
       <div className="content-wrapper">
-        <div class="content-wrapper--container" dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />                
+        <div class="content-wrapper--container" dangerouslySetInnerHTML={{ __html: data.wordpressPage.content }} />         
+        <div class="content-wrapper--container" dangerouslySetInnerHTML={{ __html: data.wordpressPage.acf.footer_content }} /> 
       </div>  
     </Layout>
   )
@@ -27,6 +28,7 @@ export const query = graphql`
       content
       acf {
         page_subtitle
+        footer_content
       }
     }
     allWordpressPost(filter: {type: {eq: "post"}, tags: {elemMatch: {slug: {eq: "featured"}}}}) {
