@@ -129,7 +129,7 @@
   
   
   @mixin center-wrapper() {
-    width: $grid-widescreen;
+    width: $grid-large;
     margin: 0 auto;  
   }
 
@@ -201,18 +201,19 @@
 
       a {
         background-color: white;
-        padding: 15px 30px;
+        padding: 10px 30px;
         border-radius: 30px;
         display: inline-block;
-        color: $base-color;
+        color: darken($base-color, 5);
         text-decoration: none;
+        font-weight: 900;
       }
 
       @include media-query($medium-down) {
         width: 100%;
         left: 0;
         top: 0;
-        padding: 2.4em 2.4em 0;
+        padding: 2.4em 1.8em 0;
   
         &-wrapper {
           @include justify-content(flex-start);
@@ -237,4 +238,14 @@
       display: inline-block;
       padding-right: 0.8em;
     }
+  }
+
+  @mixin button() {
+    padding: 10px 30px;
+    border-radius: 30px;        
+    display: inline-block;
+    text-transform: capitalize;
+    background-color: darken($base-color, 5);
+    color: white;
+    font-weight: 800;
   }
