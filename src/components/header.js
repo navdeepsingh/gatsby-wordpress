@@ -45,14 +45,14 @@ const Header = () => (
         }
         fbIcon: file(relativePath: { eq: "fb-blue.png" }) {
           childImageSharp {
-              fixed(width: 13) {
+              fixed(width: 12) {
                   ...GatsbyImageSharpFixed
                   }
             }
         }
         yTubeIcon: file(relativePath: { eq: "ytube-blue.png" }) {
             childImageSharp {
-                fixed(width: 25) {
+                fixed(width: 23) {
                     ...GatsbyImageSharpFixed
                   }
             }
