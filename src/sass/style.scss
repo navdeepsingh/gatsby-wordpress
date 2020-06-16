@@ -323,9 +323,23 @@ main {
 .content-wrapper {  
   background: url('../images/creative1.png') left 20% no-repeat, url('../images/creative2.png') right calc(100% - 30%) no-repeat; 
 
+  &.home { // Home Page
+    background-position: left 20%, right bottom -50px;
+  }
+
   &.benecol { // Benezol Page
     background: url('../images/creative1.png') left 20% no-repeat, url('../images/heart-doctor.jpg') right 100px bottom -60px no-repeat; 
     background-size: auto auto, 300px auto;
+  }
+
+  &.dark {
+    background: none; 
+    background-color: $grey;       
+    padding-bottom: 4em;
+  }
+
+  &.blank {
+    background: none; 
   }
 
   @include media-query($medium-down) {
@@ -522,6 +536,66 @@ main {
 
 .featured-posts {
   @include display-flexbox;
+
+  @include media-query($medium-down) {
+    flex-direction: column;
+  }  
+
+  &--item {
+    margin : 0.8em;
+    background-color: white;
+    border-radius: 10px;
+    @include generic-box-shadow();
+
+    &__image {
+      img {
+        border-radius: 10px;
+      }
+    }
+
+    &__text {
+      padding: 0.8em 0.8em 1em 1em;
+      background-color: white;
+      border-radius: 0 0 10px 10px;
+      font-weight: 800;
+
+      .category {
+        font-size: 0.7em;        
+        color: $green;
+
+        &.recipes {
+          color: $red;
+        }
+      }
+
+      .title {
+        a{
+          color: $black;
+          font-size: 1em;
+          display: flex;
+          @include justify-content(space-between);
+          @include align-items(center);
+
+          span {
+            flex-basis: 70%;
+          }
+
+          &:hover {
+            &::after {
+              margin-right: 10px;
+            }
+          }
+
+          &::after {
+            content: '\2192';  
+            color: $base-color;
+            font-size: 1.5em; 
+            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 100ms;         
+          }
+        }
+      }
+    }
+  }
 }
 
 /*##############  Footer Styles ###############*/
@@ -637,6 +711,13 @@ footer {
       padding-left: 0.8em;
     }
   }
+}
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+.text-center {
+  text-align: center;
 }
 
 

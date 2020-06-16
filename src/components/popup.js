@@ -9,7 +9,7 @@ const Popup = () => {
         query {
             shfImage: file(relativePath: { eq: "SHF.jpg" }) {
                 childImageSharp {
-                    fixed(width: 158, quality: 100) {
+                    fixed(width: 154, quality: 100) {
                         ...GatsbyImageSharpFixed_tracedSVG
                     }
                 }
