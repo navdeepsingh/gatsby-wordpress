@@ -50,6 +50,7 @@ module.exports = {
           "**/categories",
           "**/posts",
           "**/slider",
+          "**/faqs",
           "**/recipe",
           "**/pages",
           "**/media",

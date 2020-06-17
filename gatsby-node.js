@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allWordpressPage {
+      allWordpressPage(filter: {status: {eq: "publish"}}) {
         edges {
           node {
             slug

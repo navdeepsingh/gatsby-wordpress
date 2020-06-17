@@ -1,0 +1,45 @@
+@import "./sizes.scss";
+@import "./colors.scss";
+@import "./mixins.scss";
+
+.accordion {
+    &__item {
+        border-bottom: 1px solid lighten($black, 80);
+        padding: 1em 0;
+        cursor: pointer;
+    }
+    &__heading {
+        color: $cyan-dark;
+        font-weight: 900;
+        font-size: 1.1em;
+        position: relative;
+
+        .accordion__button {
+            &::after {
+                position: absolute;
+                right: 0;
+                font-size: 1.5em;
+                color: $base-color; 
+            }   
+        
+            &[aria-expanded=true] {
+                &::after {
+                    content: "\2212" !important;
+                } 
+            }
+        
+            &[aria-expanded=false] {
+                &::after {
+                    content: "\002B";                    
+                }
+            }
+        }
+        
+    }
+    &__panel {
+        padding: 0.8em 0;
+        p {
+            padding: 0;
+        }
+    }
+}
