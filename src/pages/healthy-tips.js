@@ -1,44 +1,69 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import HeroBanner from "../components/heroBanner"
 import SEO from "../components/seo"
 
-const PostsPage = ({ data }) => (
-  <Layout>
-    <SEO title="All Posts" />
-    <div className="content-wrapper">
-        <div class="content-wrapper--container">
-        <h1>Healthy Tips</h1>
-          <ul style={{ listStyle: "none" }}>
-            {data.allWordpressPost.edges.map(post => (
-              <li style={{ padding: "20px 0", borderBottom: "1px solid #ccc" }} key={post.node.wordpress_id}>
-                <Link to={`/post/${post.node.slug}`} style={{ display: "flex", color: "black", textDecoration: "none" }} >
-                  {
-                    post.node.featured_media !== null ?
-                      <img src={post.node.featured_media.source_url} alt={post.node.title} style={{ width: "25%", marginRight: 20 }} />
-                      : ''
-                  }
-                  <div style={{ width: "75%" }}>
-                    <h3 dangerouslySetInnerHTML={{ __html: post.node.title }} style={{ marginBottom: 0 }} />
-                    <p style={{ margin: 0, color: "grey" }}>
-                      Written by {post.node.author.name} on {post.node.date}
-                    </p>
-                    <div dangerouslySetInnerHTML={{ __html: post.node.excerpt }} />
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>                
-      </div>    
-  </Layout>
-)
+const PostsPage = ({ data }) => {
+  const {edges: featuredPosts} = data.allWordpressPost;
+  return (
+    <Layout>
+      <SEO title="All Posts" />
+      <HeroBanner 
+        banner={data.wordpressPage.acf} 
+        title={data.wordpressPage.title}
+        additionalClass="healthy-tips" />
+      <div className="content-wrapper healthy-tips">
+          <div class="content-wrapper--container">
+            <div className="featured-posts">
+              {
+              featuredPosts.map(featuredPost => {
+                return  <div className="featured-posts--item" key={featuredPost.node.wordpress_id}>
+                          <div className="featured-posts--item__image">
+                            <img src={featuredPost.node.featured_media.source_url} alt={featuredPost.node.title} className="img-fluid" />
+                          </div>
+                          <div className="featured-posts--item__text">
+                            <div className="category">HEALTHY TIPS</div>
+                            <div className="title">
+                              <Link to={`/post/${featuredPost.node.slug}`}>
+                                <span>{featuredPost.node.title}</span>
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                })
+              }
+            </div>          
+          </div>                
+        </div>    
+    </Layout>
+  )
+}
 
 export default PostsPage
 
 export const query = graphql`
   query {
-    allWordpressPost(filter: {type:{eq: "post"} }) {
+    wordpressPage(slug: {eq: "healthy-tips"}) {
+      title
+      excerpt
+      content
+      acf {
+        page_subtitle
+        page_sub_txt
+        feat_img {
+          source_url
+        }
+        mobile_featured_image {
+          source_url
+        }
+        link
+        link_label
+        link_url
+        theme
+      }
+    }
+    allWordpressPost(sort: {fields: date, order: ASC}, filter: {type:{eq: "post"} }) {
       edges {
         node {
           id

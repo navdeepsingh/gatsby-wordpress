@@ -228,12 +228,13 @@ header {
 }
 
 /*##############  Banner Styles ###############*/
-.banner {  
-  height: 600px;
+.banner {    
   position: relative;
 
-  @include media-query($medium-down) {
-    height: 563px;
+  &.healthy-tips { // Page Healthy Tips
+    .banner__image {
+      height: 320px !important;
+    }    
   }
 
   &.light {
@@ -252,7 +253,6 @@ header {
   @include banner-image();
 
   @include banner-text();
-  
 }
 
 /*##############  Mini Popup Styles ###############*/
@@ -330,6 +330,19 @@ main {
   &.benecol { // Benezol Page
     background: url('../images/creative1.png') left 20% no-repeat, url('../images/heart-doctor.jpg') right 100px bottom -60px no-repeat; 
     background-size: auto auto, 300px auto;
+  }
+
+  &.healthy-tips { // Healthy Tips Page
+    background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
+    background-size: 230px auto;
+    margin-top: -160px;
+    padding-bottom: 100px;
+    position: relative;
+  }
+
+  &.faq { // FAQ Page
+    background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
+    background-size: 230px auto;
   }
 
   &.dark {

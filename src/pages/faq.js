@@ -16,7 +16,7 @@ const FaqPage = ({ data }) => {
     return (
         <Layout>
             <SEO title="FAQ" />
-            <div className="content-wrapper">
+            <div className="content-wrapper faq">
                 <div class="content-wrapper--container">
                     <h1 className="text-center">FAQ</h1>
                     <Accordion preExpanded={[0]}>

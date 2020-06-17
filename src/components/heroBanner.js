@@ -1,12 +1,12 @@
 import React from "react"
 
 
-const HeroBanner = ({banner, title }) => {
+const HeroBanner = ({banner, title, additionalClass }) => {
     const bannerDesktopImage = banner.feat_img && banner.feat_img.source_url ? banner.feat_img.source_url : "https://d3njy17jeluiri.cloudfront.net/wp-benezol/wp-content/uploads/2020/06/08043547/slide1.jpg";
     const bannerMobileImage = banner.mobile_featured_image && banner.mobile_featured_image.source_url ? banner.mobile_featured_image.source_url : "https://d3njy17jeluiri.cloudfront.net/wp-benezol/wp-content/uploads/2020/06/11061325/bencol-bottles-mobile.jpg";
     
     return (
-    <div className={["banner", banner.theme].join(" ")}>                   
+    <div className={["banner", banner.theme, additionalClass].join(" ")}>                   
         <div className="banner__image">
             <picture>
                 <source media="(max-width: 989px)" srcset={bannerMobileImage} />
