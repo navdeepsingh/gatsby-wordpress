@@ -358,6 +358,27 @@ main {
     background: none; 
   }
 
+  &.post {
+    .wp-block-columns {
+      .wp-block-column {
+        &:first-child {
+          @include align-self(flex-start);
+          padding-left: 0;
+
+          p {
+            padding-left: 20%;
+          }
+        }
+        &:last-child {
+          p {
+            padding-right: 20%;
+          }
+        }
+        
+      }
+    }
+  }
+
   @include media-query($medium-down) {
     background-size: 100px auto;
 
@@ -382,168 +403,170 @@ main {
     @include media-query($medium-down) {
       width: 100%;
     }
+  }
 
-    h1 {
-      font-size: 3em;
-      font-family: GothamBookMedium, sans-serif;
-      padding-bottom: 0.5em;
-      color: $cyan-dark;
-      line-height: 1.2em;
-  
+  h1 {
+    font-size: 3em;
+    font-family: GothamBookMedium, sans-serif;
+    padding-bottom: 0.5em;
+    color: $cyan-dark;
+    line-height: 1.2em;
+
+  }
+
+  h2 {
+    font-family: GothamBookMedium, sans-serif;
+    font-size: 2.7em;
+    padding-bottom: 0.5em;
+    line-height: 1.2em;
+    color: $cyan-dark;
+
+    @include media-query($medium-down) {
+      font-size: 2.0em;
     }
-  
-    h2 {
-      font-family: GothamBookMedium, sans-serif;
-      font-size: 2.7em;
-      padding-bottom: 0.5em;
-      line-height: 1.2em;
-      color: $cyan-dark;
+  }
 
-      @include media-query($medium-down) {
-        font-size: 2.0em;
+  h4 {
+    font-family: GothamBookMedium, sans-serif;
+    color: $cyan-dark;
+    font-size: 1.6em;
+    line-height: 1.2em;
+    padding-bottom: 0.5em;
+  }
+
+  strong {
+    display: block;
+    font-family: GothamBookMedium, sans-serif;
+    font-size: 1.7em;
+    padding-bottom: 0em;
+    line-height: 1.2em;
+    color: $cyan-dark;
+  }
+
+  p {
+    font-size: 0.9em;
+    padding-bottom: 2em;
+    color: $black;
+  }
+
+  ul {
+    list-style: circle;
+
+    li {
+      padding-bottom: 0.8em;
+
+      &:last-child {
+        padding-bottom: 0em;
       }
     }
+  }
 
-    h4 {
-      font-family: GothamBookMedium, sans-serif;
-      color: $cyan-dark;
-      font-size: 1.6em;
-      line-height: 1.2em;
-      padding-bottom: 0.5em;
-    }
+  a {
+    background-color: white;      
+    text-decoration: none; 
+    color: $base-color;     
 
-    strong {
-      display: block;
-      font-family: GothamBookMedium, sans-serif;
-      font-size: 1.7em;
-      padding-bottom: 0em;
-      line-height: 1.2em;
-      color: $cyan-dark;
+    &.button {
+      @include button();
     }
-  
-    p {
-      font-size: 0.9em;
-      padding-bottom: 2em;
-      color: $black;
-    }
-  
-    ul {
-      list-style: circle;
-  
-      li {
-        padding-bottom: 0.8em;
-  
-        &:last-child {
-          padding-bottom: 0em;
-        }
-      }
-    }
-  
+  }
+
+  .button {
     a {
-      background-color: white;      
-      text-decoration: none; 
-      color: $base-color;     
-
-      &.button {
-        @include button();
-      }
+      @include button();
     }
-
-    .button {
-      a {
-        @include button();
-      }
-    }
-    
-    figure {
-      &.fixed {
-        img {
-          width: auto;
-        }
-      }
-      img {
-        width: 100%;
-      }
-    }
+  }
   
-    .wp-block-columns {
-      @include display-flexbox();
-      @include align-items(center);
-      padding: 3em 0;
+  figure {
+    &.fixed {
+      img {
+        width: auto;
+      }
+    }
+    img {
+      width: 100%;
+    }
+  }
+
+  
+
+  .wp-block-columns {
+    @include display-flexbox();
+    @include align-items(center);
+    padding: 3em 0;
+
+    &.flex-start {
+      @include align-items(flex-start);
+    }
+
+    @include media-query($medium-down) {
+      @include flex-direction(column);
+      padding: 1em 0;
+    }
+
+    .wp-block-column {
+      flex-basis: 50%;
+      padding: 0 0.8em;
 
       &.flex-start {
-        @include align-items(flex-start);
+        align-self: flex-start;
       }
-  
+      
       @include media-query($medium-down) {
-        @include flex-direction(column);
-        padding: 1em 0;
+        &:not(:first-child) {
+          padding-top: 20px;
+        }
       }
-  
-      .wp-block-column {
-        flex-basis: 50%;
-        padding: 0 0.8em;
 
-        &.flex-start {
-          align-self: flex-start;
-        }
-        
-        @include media-query($medium-down) {
-          &:not(:first-child) {
-            padding-top: 20px;
-          }
-        }
-
-        ul {
-          list-style: none;
-          li {
-            display: flex;
-            width: 100%;
-            padding-bottom: 0.8em;
-  
-            @include circle-bullets($pink);
-            &::before {
-              font-weight: 800;
-              padding-right: 0.4em;
-            }
-          }
-        }
-
-        table {
-          border: 1px solid $base-color;          
+      ul {
+        list-style: none;
+        li {
+          display: flex;
           width: 100%;
+          padding-bottom: 0.8em;
 
-          tr {
-            &:first-child {                            
-              td {                
-                background-color: darken($base-color, 5);                
-                color: white;                             
+          @include circle-bullets($pink);
+          &::before {
+            font-weight: 800;
+            padding-right: 0.4em;
+          }
+        }
+      }
 
-                strong {
-                  color: white;
-                }
+      table {
+        border: 1px solid $base-color;          
+        width: 100%;
+
+        tr {
+          &:first-child {                            
+            td {                
+              background-color: darken($base-color, 5);                
+              color: white;                             
+
+              strong {
+                color: white;
               }
             }
-
-            td {
-              border-right: 1px solid $base-color;
-              border-bottom: 1px solid $base-color;
-              text-align: center;
-              padding: 5px;   
-            }
-
-            strong {
-              color: $black;
-              font-size: 1.2em;
-              padding: 10px;
-              line-height: 0.2em;
-            }
-            
-            
           }
-        }
 
+          td {
+            border-right: 1px solid $base-color;
+            border-bottom: 1px solid $base-color;
+            text-align: center;
+            padding: 5px;   
+          }
+
+          strong {
+            color: $black;
+            font-size: 1.2em;
+            padding: 10px;
+            line-height: 0.2em;
+          }
+          
+          
+        }
       }
+
     }
   }
 
@@ -575,14 +598,7 @@ main {
       border-radius: 0 0 10px 10px;
       font-weight: 800;
 
-      .category {
-        font-size: 0.7em;        
-        color: $green;
-
-        &.recipes {
-          color: $red;
-        }
-      }
+      
 
       .title {
         a{
@@ -613,6 +629,24 @@ main {
     }
   }
 }
+/*##############  Pagination Styles ###############*/
+.pagination {
+  @include display-flexbox();
+  @include justify-content(space-between);
+  padding: 0.8em 2em 4em 2em;
+
+  a {
+    font-size: 1.3em;
+    font-weight: 900;
+    text-decoration: none;
+    color: $base-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 
 /*##############  Footer Styles ###############*/
 footer {
@@ -732,8 +766,26 @@ footer {
   width: 100%;
   height: auto;
 }
+.category {
+  font-size: 0.7em;        
+  color: $green;
+
+  &.recipes {
+    color: $red;
+  }
+}
 .text-center {
   text-align: center;
+}
+
+.category {
+  font-weight: 800;
+  font-size: 0.7em;        
+  color: $green;
+
+  &.recipes {
+    color: $red;
+  }
 }
 
 

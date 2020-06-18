@@ -1,23 +1,36 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-const BlogPostTemplate = ({ data }) => (
-  <Layout>
-    <SEO title={data.wordpressPost.title} description={data.wordpressPost.excerpt} />
-    <h1>{data.wordpressPost.title}</h1>
-    <p>
-      Written by {data.wordpressPost.author.name} on {data.wordpressPost.date}
-    </p>
-    {
-      data.wordpressPost.featured_media !== null
-        ? <Img sizes={data.wordpressPost.featured_media.source_url} alt={data.wordpressPost.title} style={{ maxHeight: 450 }} />
-        : ''
-    }
-    <div style={{ marginTop: 20 }} dangerouslySetInnerHTML={{ __html: data.wordpressPost.content }} />
-  </Layout>
-)
+const BlogPostTemplate = ({ data, pageContext }) => {
+
+  const { prev, next } = pageContext;
+  return (
+    <Layout>
+      <SEO title={data.wordpressPost.title} description={data.wordpressPost.excerpt} />
+      <div className="content-wrapper blank">
+        <div class="content-wrapper--container">  
+          <div className="category">HEALTHY TIPS</div>
+          <h1>{data.wordpressPost.title}</h1>
+          <div className="social-icons"></div>
+        </div>
+      </div>              
+      <div className="content-wrapper blank post">
+        <div dangerouslySetInnerHTML={{ __html: data.wordpressPost.content }} />
+      </div>
+
+      <div className="pagination">
+          <div>
+            {prev && <Link to={`post/${prev.slug}`} rel="prev"> ← Last </Link>}
+          </div>
+
+          <div style={{ justifySelf: 'flex-end' }}>
+            {next && <Link to={`post/${next.slug}`} rel="next"> Next → </Link>}
+          </div>
+        </div>              
+    </Layout>
+  )
+}
 export default BlogPostTemplate
 export const query = graphql`
   query($id: Int!) {
