@@ -629,6 +629,34 @@ main {
     }
   }
 }
+
+.social-icons {
+  list-style: none !important;
+  display: flex;
+  
+
+  li {
+    margin: 0 0.8em;    
+    padding: 0 !important;
+
+    a {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      background-color: $cyan-light;
+      display: flex;
+      @include justify-content(center);
+      @include align-items(center);
+      transition: all ease-out 300ms;
+
+      &:hover {
+        @include generic-box-shadow();
+      }
+    }
+  }
+  
+}
 /*##############  Pagination Styles ###############*/
 .pagination {
   @include display-flexbox();
