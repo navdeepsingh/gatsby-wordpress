@@ -24,9 +24,7 @@ const FaqPage = ({ data }) => {
                         faqs.map(faq => 
                             <AccordionItem>
                                 <AccordionItemHeading>
-                                    <AccordionItemButton>
-                                        {faq.node.title}
-                                    </AccordionItemButton>
+                                    <AccordionItemButton dangerouslySetInnerHTML={{ __html: faq.node.title }} />
                                 </AccordionItemHeading> 
                                 <AccordionItemPanel dangerouslySetInnerHTML={{ __html: faq.node.content }} />
                             </AccordionItem>

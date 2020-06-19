@@ -4,7 +4,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 
-const BlogPostTemplate = ({ data, pageContext }) => {
+const BlogPostTemplate = ({ data, pageContext, location }) => {
+
+  const currentUrl = location.href ? location.href : '';
 
   const { prev, next } = pageContext;
   return (
@@ -16,22 +18,22 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           <h1>{data.wordpressPost.title}</h1>
           <ul className="social-icons">
             <li>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://gatsby-wordpress-benecol.netlify.app/" rel="noopener noreferrer">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`} rel="noopener noreferrer" target="_blank">
                 <Img fixed={data.fbIcon.childImageSharp.fixed} />
               </a>
             </li>
             <li>
-              <a href={`https://twitter.com/intent/tweet/?text=Check this out: ${data.wordpressPost.title}&url=https://gatsby-wordpress-benecol.netlify.app/`} rel="noopener noreferrer">
+              <a href={`https://twitter.com/intent/tweet/?text=Check this out: ${data.wordpressPost.title}&url=${currentUrl}`} rel="noopener noreferrer"  target="_blank">
                 <Img fixed={data.twIcon.childImageSharp.fixed} />
               </a>
             </li>
             <li>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://gatsby-wordpress-benecol.netlify.app/" rel="noopener noreferrer">
+              <a href={`http://pinterest.com/pin/create/button/?url=${currentUrl}&description=${data.wordpressPost.title}`} rel="noopener noreferrer" target="_blank">
                 <Img fixed={data.piIcon.childImageSharp.fixed} />
               </a>
             </li>
             <li>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://gatsby-wordpress-benecol.netlify.app/" rel="noopener noreferrer">
+              <a href={`mailto:${process.env.GATSBY_MAILTO}`} rel="noopener noreferrer" target="_blank">
                 <Img fixed={data.emailIcon.childImageSharp.fixed} />
               </a>
             </li>

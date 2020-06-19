@@ -90,7 +90,7 @@ header {
         background-color: white;
         border-radius: 5px;        
         z-index: 100;
-        transition: all 2s ease 2s;
+        transition: all ease-out 300ms;
         @include generic-box-shadow();
 
         li {
@@ -361,10 +361,10 @@ main {
   &.post {
     .wp-block-columns {
       .wp-block-column {
-        &:first-child {
-          @include align-self(flex-start);
-          padding-left: 0;
+        @include align-self(flex-start);
 
+        &:first-child {          
+          padding-left: 0;
           p {
             padding-left: 20%;
           }
@@ -374,7 +374,21 @@ main {
             padding-right: 20%;
           }
         }
-        
+
+        @include media-query($medium-down) {
+          &:first-child {  
+            padding-left: 0.8em;        
+            p {
+              padding-left: 0;
+            }
+          }
+          &:last-child {
+            p {
+              padding-right: 0;
+            }
+          }
+        }
+
       }
     }
   }
