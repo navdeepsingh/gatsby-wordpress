@@ -11,7 +11,6 @@ const RecipeTemplate = ({ data }) => (
       description={data.wordpressWpRecipe.excerpt}
     />
     <h1>{data.wordpressWpRecipe.title}</h1>
-    <h3 dangerouslySetInnerHTML={{ __html: data.wordpressWpRecipe.excerpt }} />
     <div dangerouslySetInnerHTML={{ __html: data.wordpressWpRecipe.content }} />
   </Layout>
 )

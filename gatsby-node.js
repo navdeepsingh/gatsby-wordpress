@@ -6,12 +6,10 @@
 
 // You can delete this file if you're not using it
 const path = require(`path`)
-//const createPaginatedPages = require('gatsby-paginate')
 const { paginate } = require('gatsby-awesome-pagination')
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const BlogPostTemplate = path.resolve("./src/templates/BlogPost.js")
-  //const PaginatePostTemplate = path.resolve("./src/templates/PaginatePost.js")
   const PaginatePostTemplate = path.resolve("./src/templates/ArchivePost.js")
   const PageTemplate = path.resolve("./src/templates/Page.js")
   const RecipeTemplate = path.resolve("./src/templates/Recipe.js")

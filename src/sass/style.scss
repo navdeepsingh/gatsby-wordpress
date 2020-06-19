@@ -612,8 +612,6 @@ main {
       border-radius: 0 0 10px 10px;
       font-weight: 800;
 
-      
-
       .title {
         a{
           color: $black;
@@ -671,6 +669,41 @@ main {
   }
   
 }
+/*##############  Recipes Styles ###############*/
+.recipes-listing {
+  @include display-flexbox();
+  @include justify-content(space-between);
+  position: relative;
+  z-index: 1000;
+
+  &--item {
+    flex-basis: 48%;
+    margin-bottom: 0.8em;
+    background-color: white;
+    border-radius: 10px 10px;
+    @include generic-box-shadow();
+    @include display-flexbox();
+
+    &__image {
+      flex-basis: 45%;
+
+      img {
+        border-radius: 10px;
+      }
+    }
+
+    &__text {
+     flex-basis: 55%;
+     align-self: center;
+
+     a {
+       color: $cyan-dark;
+       font-weight: 900;
+     }
+    }
+  }
+}
+
 /*##############  Pagination Styles ###############*/
 .pagination {
   @include display-flexbox();
