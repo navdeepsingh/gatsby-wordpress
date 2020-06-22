@@ -406,7 +406,6 @@ main {
 
   &--container {
     width: $grid-large;
-    padding: $grid-gutter;
     padding-top: 4em;
     margin: 0 auto;
 
@@ -416,6 +415,7 @@ main {
 
     @include media-query($medium-down) {
       width: 100%;
+      padding: $grid-gutter;
     }
   }
 
@@ -700,6 +700,169 @@ main {
        color: $cyan-dark;
        font-weight: 900;
      }
+    }
+  }
+}
+
+.recipe-wrapper {
+  
+  &--top {
+    @include display-flexbox();
+    height: 379px;
+
+    &__image {
+      flex-basis: 65%;
+      img {
+        width: 100%;
+        border-radius: 10px 0 0 0; 
+        height: 379px;       
+      }
+    }
+
+    &__text {
+      height: 379px;
+      flex-basis: 35%;
+      color: white;
+      background-color: darken($color: $base-color, $amount: 10);
+      padding: 10px;
+      display: flex;
+      border-radius: 0 10px 0 0;
+      @include flex-direction(column);
+      @include justify-content(center);
+      
+      .category {
+        font-size: 0.5em;
+      }
+
+      h1 {
+        color: inherit;
+        font-size: 2em;
+      }
+    }
+  }
+  &--bottom {
+    @include display-flexbox();
+    @include align-items(center);
+    
+    border-radius: 0 0 10px 10px;
+    background-color: $cyan-light;
+    height: 80px;
+
+    &__attributes {
+      flex-basis: 65%;
+      padding: 0 3em;
+      @include display-flexbox();
+      @include justify-content(space-between);
+      
+      > div {
+        display: flex;        
+        @include align-items(center);
+
+        span {
+          padding-left: 0.8em;
+          font-size: 0.7em;
+          font-weight: 900;
+          align-self: center;
+        }
+      }
+      
+    }
+
+    &__social {
+      flex-basis: 35%;
+      justify-self: flex-end;
+
+      ul.social-icons {
+        @include justify-content(flex-end);
+        li {
+          a {
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.recipe-detail {
+  @include display-flexbox();
+  padding-top: 3em;
+
+  .col {
+    &:first-child {
+      flex-basis: 35%;
+    }
+    &:last-child {
+      flex-basis: 65%;
+    }
+
+    h2 {
+      color: $cyan-dark;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+
+    ul {
+      li {
+        font-size: 0.8em;
+      }
+    }
+
+    .ingredients {
+      ul {
+        list-style: none;
+      }
+    }
+    
+    .directions {
+      ul {
+        list-style: none;
+        position: relative;
+
+        li {
+          display: flex;
+          position: relative; 
+          
+          &::before {
+            content: "";  
+            font-size: 1.2em;
+            font-weight: 900;            
+            z-index: 90;            
+            display: inline-block;
+            padding-right: 0.8em; 
+            margin-top: 5px; 
+            background: url('../images/blue-white-bullet.png') no-repeat top;
+            background-size: contain; 
+            margin-right: 0.8em;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 14px;
+            width: 1px;
+            height: 100%;
+            background-color: black;
+            z-index: 0;
+          }
+
+          &:last-child {
+            border-left: none;
+
+            &::after {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    } 
+
+    .nutrition {
+      padding-top: 2.5em;
+
+      
     }
   }
 }

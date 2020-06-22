@@ -73,12 +73,6 @@ export const query = graphql`
           status
           title
           content        
-          excerpt
-          ingredient
-          course
-          course
-          cuisine
-          
         }
       }
     }

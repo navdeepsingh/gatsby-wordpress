@@ -81,18 +81,6 @@ export const query = graphql`
           }
         }
       }
-    }
-    allWordpressWpRecipe(filter: {tags: {elemMatch: {slug: {eq: "featured"}}}}) {
-      edges {
-        node {
-          id
-          slug
-          status
-          title
-          content
-          excerpt          
-        }
-      }
-    }
+    }    
   }
 `
