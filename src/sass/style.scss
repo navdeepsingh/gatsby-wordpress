@@ -673,32 +673,44 @@ main {
 .recipes-listing {
   @include display-flexbox();
   @include justify-content(space-between);
+  @include flex-wrap(wrap);
   position: relative;
   z-index: 1000;
 
   &--item {
     flex-basis: 48%;
-    margin-bottom: 0.8em;
+    margin-bottom: 1.2em;
     background-color: white;
     border-radius: 10px 10px;
+    height: 131px;
     @include generic-box-shadow();
     @include display-flexbox();
 
     &__image {
       flex-basis: 45%;
 
+      a {
+        background-color: transparent;
+      }
+
       img {
         border-radius: 10px;
+        width: 100%;
       }
     }
 
     &__text {
      flex-basis: 55%;
      align-self: center;
+     padding: 0.8em;
 
      a {
        color: $cyan-dark;
        font-weight: 900;
+     }
+
+     .author {
+       @include contributed-by();
      }
     }
   }
@@ -737,6 +749,14 @@ main {
       h1 {
         color: inherit;
         font-size: 2em;
+      }
+
+      p {
+        color: inherit;
+      }
+
+      .author {
+        @include contributed-by(inherit);
       }
     }
   }
@@ -861,7 +881,33 @@ main {
 
     .nutrition {
       padding-top: 2.5em;
+      
+      &-wrapper {
+        @include display-flexbox();
 
+        &--label {
+          font-size: 0.7em;
+          font-weight: 900;
+          flex-basis: 125px;
+        }
+
+        &--list {          
+
+          ul {
+            list-style: none;
+            @include display-flexbox();
+            @include flex-wrap(wrap);
+
+            li {
+              background-color: $cyan-light;
+              padding: 0.3em 1em;
+              border-radius: 20px;
+              margin-right: 0.8em;
+              margin-bottom: 0.8em;
+            }
+          }
+        }
+      }
       
     }
   }
