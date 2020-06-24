@@ -1,12 +1,34 @@
-import React from "react"
+import React, {useState} from "react"
 import Layout from "../components/layout"
 import HeroBanner from "../components/heroBanner"
+import RecipeGroup from "../components/RecipeGroup"
 import SEO from "../components/seo"
-import { graphql, Link } from "gatsby"
+import { graphql} from "gatsby"
+import helpers from "../helpers";
 
 
 const RecipesPage = ({ data }) => {
+
   const {edges: recipes} = data.allWordpressWpRecipe;
+  const [page, setPage] = useState(1);
+  const chunksPerPage = process.env.GATSBY_RECIPES_PER_PAGE;
+  const [allLoaded, setAllLoaded] = useState(0);
+
+  const RenderRecipes = () => {    
+    const chunks = helpers.chunkArray(Array.from(recipes), chunksPerPage);
+    let paginated = Array.from(chunks).splice(0, page)
+    return paginated.map((group, index) => {
+      return <RecipeGroup recipes={group} key={index} />
+    })
+  }
+
+  const onLoadHandler = (e) => {
+    e.preventDefault();
+    setPage(page+1);
+    let allAllowed = (page+1) * chunksPerPage >= recipes.length ? 1 : 0;    
+    setAllLoaded(allAllowed);
+  }
+
   return (
     <Layout>
       <SEO title="Recipes" keywords={[`gatsby`, `application`, `react`]} />
@@ -15,27 +37,12 @@ const RecipesPage = ({ data }) => {
           title={data.wordpressPage.title}
           additionalClass="healthy-tips" />
       <div className="content-wrapper recipes">
-        <div class="content-wrapper--container">
+        <div className="content-wrapper--container">
           <div className="recipes-listing">
-            {
-            recipes.map(recipe => {
-              return  <div className="recipes-listing--item" key={recipe.node.wordpress_id}>
-                        <div className="recipes-listing--item__image">
-                          <Link to={`/recipe/${recipe.node.slug}`}>
-                            <img src={recipe.node.acf.main_image.source_url} alt="" />
-                          </Link>
-                        </div>
-                        <div className="recipes-listing--item__text">
-                          <div className="title">
-                            <Link to={`/recipe/${recipe.node.slug}`}>
-                              <span dangerouslySetInnerHTML={{ __html: recipe.node.title }} />
-                            </Link>
-                          </div>
-                          <div className="author" dangerouslySetInnerHTML={{ __html: recipe.node.acf.contributed_by }} />
-                        </div>
-                      </div>
-              })
-            }
+            <RenderRecipes />
+            <div className="load-more">              
+              <button type="button" disabled={allLoaded} onClick={onLoadHandler}>{allLoaded ? 'All Recipes Loaded' : 'Load More'}</button>
+            </div>
           </div>          
         </div>                
       </div>             
@@ -69,6 +76,7 @@ export const query = graphql`
       edges {
         node {
           id
+          wordpress_id
           slug
           status
           title

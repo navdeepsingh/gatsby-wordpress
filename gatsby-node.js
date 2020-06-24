@@ -51,13 +51,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
   const BlogPosts = result.data.allWordpressPost.edges
-  // paginate({
-  //   createPage,
-  //   items: BlogPosts,
-  //   itemsPerPage: 1,
-  //   pathPrefix: '/healthy-tips/post',
-  //   component: PaginatePostTemplate
-  // });
   BlogPosts.forEach((post, index) => {    
     createPage({
       path: `/post/${post.node.slug}`,
