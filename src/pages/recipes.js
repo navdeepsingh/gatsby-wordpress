@@ -14,7 +14,7 @@ const RecipesPage = ({ data }) => {
           banner={data.wordpressPage.acf} 
           title={data.wordpressPage.title}
           additionalClass="healthy-tips" />
-      <div className="content-wrapper healthy-tips">
+      <div className="content-wrapper recipes">
         <div class="content-wrapper--container">
           <div className="recipes-listing">
             {

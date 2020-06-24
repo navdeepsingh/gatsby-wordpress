@@ -1,12 +1,13 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout.js"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import "../sass/style.scss"
 
-const RecipeTemplate = ({ data, location }) => {
+const RecipeTemplate = ({ data, pageContext, location }) => {
   const currentUrl = location.href ? location.href : '';
+  const { prev, next } = pageContext;
   return (
     <Layout>
       <SEO
@@ -124,6 +125,16 @@ const RecipeTemplate = ({ data, location }) => {
           </div>
         </div>
       </div>
+
+      <div className="pagination">
+          <div>
+            {prev && <Link to={`recipe/${prev.slug}`} rel="prev"> ← Last </Link>}
+          </div>
+
+          <div style={{ justifySelf: 'flex-end' }}>
+            {next && <Link to={`recipe/${next.slug}`} rel="next"> Next → </Link>}
+          </div>
+        </div> 
     </Layout>
   )
 }

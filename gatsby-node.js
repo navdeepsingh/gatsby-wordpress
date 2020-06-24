@@ -6,11 +6,9 @@
 
 // You can delete this file if you're not using it
 const path = require(`path`)
-const { paginate } = require('gatsby-awesome-pagination')
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const BlogPostTemplate = path.resolve("./src/templates/BlogPost.js")
-  const PaginatePostTemplate = path.resolve("./src/templates/ArchivePost.js")
   const PageTemplate = path.resolve("./src/templates/Page.js")
   const RecipeTemplate = path.resolve("./src/templates/Recipe.js")
   const result = await graphql(`
@@ -53,13 +51,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
   const BlogPosts = result.data.allWordpressPost.edges
-  paginate({
-    createPage,
-    items: BlogPosts,
-    itemsPerPage: 1,
-    pathPrefix: '/healthy-tips/post',
-    component: PaginatePostTemplate
-  });
+  // paginate({
+  //   createPage,
+  //   items: BlogPosts,
+  //   itemsPerPage: 1,
+  //   pathPrefix: '/healthy-tips/post',
+  //   component: PaginatePostTemplate
+  // });
   BlogPosts.forEach((post, index) => {    
     createPage({
       path: `/post/${post.node.slug}`,
@@ -84,13 +82,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
   const Recipes = result.data.allWordpressWpRecipe.edges
-  Recipes.forEach(recipe => {
+  Recipes.forEach((recipe, index) => {
     createPage({
       path: `/recipe/${recipe.node.slug}`,
       component: RecipeTemplate,
       context: {
         id: recipe.node.wordpress_id,
         slug: recipe.node.slug,
+        prev: index === 0 ? null : Recipes[index - 1].node,
+        next: index === (Recipes.length - 1) ? null : Recipes[index + 1].node
       },
     })
   })
