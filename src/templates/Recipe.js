@@ -16,18 +16,15 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
       <div className="content-wrapper blank">
         <div class="content-wrapper--container">  
           <div className="recipe-wrapper">
-            <div className="recipe-wrapper--top">
-              <div className="recipe-wrapper--top__image">
+              <div className="recipe-wrapper--image">
                 <img src={data.wordpressWpRecipe.acf.main_image.source_url} alt="" />
               </div>
-              <div className="recipe-wrapper--top__text">
-                <div className="cetegory">RECIPES</div>
+              <div className="recipe-wrapper--text">
+                <div className="category recipes">RECIPES</div>
                 <h1>{data.wordpressWpRecipe.title}</h1>
                 <div className="author" dangerouslySetInnerHTML={{ __html: data.wordpressWpRecipe.acf.contributed_by }} />                
               </div>
-            </div>
-            <div className="recipe-wrapper--bottom">
-              <div className="recipe-wrapper--bottom__attributes">
+              <div className="recipe-wrapper--attributes">
                 {
                   data.wordpressWpRecipe.acf.passive_time
                   ?
@@ -66,7 +63,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
                 }                
                
               </div>
-              <div className="recipe-wrapper--bottom__social">
+              <div className="recipe-wrapper--social">
                 <ul className="social-icons">
                   <li>
                     <a href="/" rel="noopener noreferrer" target="_blank">
@@ -94,8 +91,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
                     </a>
                   </li>
                 </ul>
-              </div>
-            </div>
+              </div>            
           </div>
           <div className="recipe-detail">
             <div className="col">
