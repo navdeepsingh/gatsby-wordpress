@@ -336,7 +336,7 @@ main {
     background-size: auto auto, 300px auto;
   }
 
-  &.healthy-tips, &.recipes { // Healthy Tips Page
+  &.healthy-tips, &.recipes { // Healthy Tips & Recipes Page
     background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
     background-size: 230px auto;
     margin-top: -160px;
@@ -346,6 +346,13 @@ main {
     @include media-query($medium-down) {
       margin-top: 0px;
     }
+  }
+
+  &.recipe { // Recipe Detail Page
+    background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
+    background-size: 230px auto;
+    padding-bottom: 100px;
+    position: relative;
   }
 
   &.faq { // FAQ Page
@@ -607,11 +614,18 @@ main {
     margin : 0.8em;
     background-color: white;
     border-radius: 10px;
+    flex-basis: 33%;
     @include generic-box-shadow();
 
     &__image {
       img {
         border-radius: 10px;
+        height: 238px;
+        object-fit: cover;
+
+        @include media-query($medium-down) {
+          height: auto;
+        }  
       }
     }
 
@@ -980,11 +994,24 @@ main {
   }
 }
 
+.recipes-likes {
+  border-top: 1px solid lighten($color: $black, $amount: 65);
+
+  h3 {
+    text-align: center;
+    font-family: GothamBookMedium;
+    color: $cyan-dark;
+    font-size: 1.5em;
+    padding: 2em 0;
+  }
+
+}
+
 /*##############  Pagination Styles ###############*/
 .pagination {
   @include display-flexbox();
   @include justify-content(space-between);
-  padding: 0.8em 2em 4em 2em;
+  padding: 1.5em 0 4em 0;
 
   a {
     font-size: 1.3em;

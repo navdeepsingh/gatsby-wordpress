@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const RecipeTemplate = path.resolve("./src/templates/Recipe.js")
   const result = await graphql(`
     {
-      allWordpressPost(sort: {fields: date, order: ASC}, filter: {type:{eq: "post"} }) {
+      allWordpressPost(sort: {fields: date, order: ASC}, filter: {type:{eq: "post"}}) {
         edges {
           node {
             slug
@@ -36,11 +36,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allWordpressWpRecipe {
+      allWordpressWpRecipe(filter: {status: {eq: "publish"}}) {
         edges {
           node {
             slug
             wordpress_id
+            acf {
+              like {
+                wordpress_id
+              }
+            }
           }
         }
       }
@@ -65,8 +70,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
   const Pages = result.data.allWordpressPage.edges
   Pages.forEach(page => {
+    const pageSlug = page.node.slug;
+    if (pageSlug === 'healthy-tips' || pageSlug === 'recipes') return; // Skip pages
     createPage({
-      path: `/${page.node.slug}`,
+      path: `/${pageSlug}`,
       component: PageTemplate,
       context: {
         id: page.node.wordpress_id,
@@ -75,7 +82,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
   const Recipes = result.data.allWordpressWpRecipe.edges
-  Recipes.forEach((recipe, index) => {
+  Recipes.forEach((recipe, index) => {    
+    
+    let recipeLikes = recipe.node.acf.like;
+    let firstRecipe, secondRecipe;
+
+    if (recipeLikes) {
+      firstRecipe = recipeLikes[0].wordpress_id;
+      secondRecipe = recipeLikes[1].wordpress_id;
+    }
+
     createPage({
       path: `/recipe/${recipe.node.slug}`,
       component: RecipeTemplate,
@@ -83,7 +99,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         id: recipe.node.wordpress_id,
         slug: recipe.node.slug,
         prev: index === 0 ? null : Recipes[index - 1].node,
-        next: index === (Recipes.length - 1) ? null : Recipes[index + 1].node
+        next: index === (Recipes.length - 1) ? null : Recipes[index + 1].node,
+        firstRecipe: firstRecipe ? firstRecipe : 0,
+        secondRecipe: secondRecipe ? secondRecipe : 0,
       },
     })
   })

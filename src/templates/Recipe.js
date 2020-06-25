@@ -1,20 +1,22 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout.js"
+import RecipeLike from "../components/recipeLike"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import "../sass/style.scss"
 
 const RecipeTemplate = ({ data, pageContext, location }) => {
   const currentUrl = location.href ? location.href : '';
-  const { prev, next } = pageContext;
+  const { prev, next } = pageContext;  
+  
   return (
     <Layout>
       <SEO
         title={"Recipes: " + data.wordpressWpRecipe.title}
       />
-      <div className="content-wrapper blank">
-        <div class="content-wrapper--container">  
+      <div className="content-wrapper recipe">
+        <div className="content-wrapper--container">  
           <div className="recipe-wrapper">
               <div className="recipe-wrapper--image">
                 <img src={data.wordpressWpRecipe.acf.main_image.source_url} alt="" />
@@ -119,25 +121,40 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
               } 
             </div>
           </div>
+
+          <div className="pagination">
+            <div>
+              {prev && <Link to={`recipe/${prev.slug}`} rel="prev"> ← Last </Link>}
+            </div>
+
+            <div style={{ justifySelf: 'flex-end' }}>
+              {next && <Link to={`recipe/${next.slug}`} rel="next"> Next → </Link>}
+            </div>
+          </div>
+
+          {
+            data.firstRecipe && data.secondRecipe
+            ?
+              <div className="recipes-likes">
+                <RecipeLike firstRecipe={data.firstRecipe} secondRecipe={data.secondRecipe} />
+              </div>
+            : null
+          }
+          
         </div>
       </div>
 
-      <div className="pagination">
-          <div>
-            {prev && <Link to={`recipe/${prev.slug}`} rel="prev"> ← Last </Link>}
-          </div>
+      
 
-          <div style={{ justifySelf: 'flex-end' }}>
-            {next && <Link to={`recipe/${next.slug}`} rel="next"> Next → </Link>}
-          </div>
-        </div> 
+     
+      
     </Layout>
   )
 }
 export default RecipeTemplate
 
 export const query = graphql`
-  query($id: Int!) {
+  query($id: Int!, $firstRecipe: Int!, $secondRecipe: Int!) {
     wordpressWpRecipe(wordpress_id: { eq: $id }) {
       slug
       title
@@ -155,6 +172,28 @@ export const query = graphql`
           source_url
         }
       }
+    }    
+    firstRecipe: wordpressWpRecipe(wordpress_id: { eq: $firstRecipe }) {
+      slug
+      title
+      content
+      acf {                
+        contributed_by
+        main_image {
+            source_url
+        }
+      }
+    }
+    secondRecipe: wordpressWpRecipe(wordpress_id: { eq: $secondRecipe }) {
+        slug
+        title
+        content
+        acf { 
+          contributed_by               
+          main_image {
+              source_url
+          }
+        }
     }
     clockIcon: file(relativePath: { eq: "clock-icon.png" }) {
       childImageSharp {
