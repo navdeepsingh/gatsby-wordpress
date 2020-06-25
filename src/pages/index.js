@@ -49,7 +49,7 @@ const HomePage = ({ data }) => {
                           <div className="featured-posts--item__text">
                             <div className="category recipes">RECIPES</div>
                             <div className="title">
-                              <Link to={`/post/${featuredRecipe.node.slug}`}>
+                              <Link to={`/recipe/${featuredRecipe.node.slug}`}>
                                 <span>{featuredRecipe.node.title}</span>
                               </Link>
                             </div>
