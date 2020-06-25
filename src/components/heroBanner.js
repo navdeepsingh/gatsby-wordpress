@@ -9,7 +9,7 @@ const HeroBanner = ({banner, title, additionalClass }) => {
     <div className={["banner", banner.theme, additionalClass].join(" ")}>                   
         <div className="banner__image">
             <picture>
-                <source media="(max-width: 989px)" srcset={bannerMobileImage} />
+                <source media="(max-width: 989px)" srcSet={bannerMobileImage} />
                 <img src={bannerDesktopImage} alt="" />
             </picture>
         </div>

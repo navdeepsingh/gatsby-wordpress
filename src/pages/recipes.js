@@ -1,48 +1,92 @@
-import React from "react"
+import React, {useState} from "react"
 import Layout from "../components/layout"
+import HeroBanner from "../components/heroBanner"
+import RecipeGroup from "../components/RecipeGroup"
 import SEO from "../components/seo"
-import { graphql, Link } from "gatsby"
+import { graphql} from "gatsby"
+import helpers from "../helpers";
 
 
-const RecipesPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <div className="content-wrapper">
-        <div class="content-wrapper--container">
-          <h1>Recipes</h1>
-          <ul style={{ listStyle: "none" }}>
-            {data.allWordpressWpRecipe.edges.map(recipe => (
-              <li style={{ padding: "20px 0", borderBottom: "1px solid #ccc" }}>
-                <Link to={`/recipe/${recipe.node.slug}`} style={{ display: "flex", color: "black", textDecoration: "none" }} >
-                  <div style={{ width: "75%" }}>
-                    <h3 dangerouslySetInnerHTML={{ __html: recipe.node.title }} style={{ marginBottom: 0 }} />
-                    <div dangerouslySetInnerHTML={{ __html: recipe.node.excerpt }} />
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-    </div>        
-  </Layout>
-)
+const RecipesPage = ({ data }) => {
+
+  const {edges: recipes} = data.allWordpressWpRecipe;
+  const [page, setPage] = useState(1);
+  const chunksPerPage = process.env.GATSBY_RECIPES_PER_PAGE;
+  const [allLoaded, setAllLoaded] = useState(0);
+
+  const RenderRecipes = () => {    
+    const chunks = helpers.chunkArray(Array.from(recipes), chunksPerPage);
+    let paginated = Array.from(chunks).splice(0, page)
+    return paginated.map((group, index) => {
+      return <RecipeGroup recipes={group} key={index} />
+    })
+  }
+
+  const onLoadHandler = (e) => {
+    e.preventDefault();
+    setPage(page+1);
+    let allAllowed = (page+1) * chunksPerPage >= recipes.length ? 1 : 0;    
+    setAllLoaded(allAllowed);
+  }
+
+  return (
+    <Layout>
+      <SEO title="Recipes" keywords={[`gatsby`, `application`, `react`]} />
+      <HeroBanner 
+          banner={data.wordpressPage.acf} 
+          title={data.wordpressPage.title}
+          additionalClass="healthy-tips" />
+      <div className="content-wrapper recipes">
+        <div className="content-wrapper--container">
+          <div className="recipes-listing">
+            <RenderRecipes />
+            <div className="load-more">              
+              <button type="button" disabled={allLoaded} onClick={onLoadHandler}>{allLoaded ? 'All Recipes Loaded' : 'Load More'}</button>
+            </div>
+          </div>          
+        </div>                
+      </div>             
+    </Layout>
+  )
+}
 export default RecipesPage
 
 export const query = graphql`
   query {
+    wordpressPage(slug: {eq: "recipes"}) {
+      title
+      excerpt
+      content
+      acf {
+        page_subtitle
+        page_sub_txt
+        feat_img {
+          source_url
+        }
+        mobile_featured_image {
+          source_url
+        }
+        link
+        link_label
+        link_url
+        theme
+      }
+    }
     allWordpressWpRecipe {
       edges {
         node {
           id
+          wordpress_id
           slug
           status
           title
-          content        
-          excerpt
-          ingredient
-          course
-          course
-          cuisine
+          content
+          acf {
+            contributed_by
+            main_image {
+              source_url
+            }
+          }          
         }
       }
     }

@@ -236,7 +236,7 @@
       content: "\26AC";  
       color: $color; 
       display: inline-block;
-      padding-right: 0.8em;
+      padding-right: 0.8em;      
     }
   }
 
@@ -254,4 +254,21 @@
     -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
+  }
+
+  @mixin contributed-by($color: $black) {
+       color: $color;
+       font-size: 0.8em;
+       line-height: 1em;
+
+       strong {
+         display: inline;
+         font-size: inherit;
+         color: inherit;
+       }
+
+       p {
+         padding: 0;
+         margin: 0;
+       }
   }

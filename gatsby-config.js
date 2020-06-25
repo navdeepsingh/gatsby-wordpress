@@ -90,7 +90,7 @@ module.exports = {
           "**/posts",
           "**/slider",
           "**/faqs",
-          "**/recipe",
+          "**/*/*/recipe",
           "**/pages",
           "**/media",
           "**/tags",
