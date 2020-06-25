@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import Layout from "../components/layout"
 import HeroBanner from "../components/heroBanner"
-import RecipeGroup from "../components/RecipeGroup"
+import RecipeGroup from "../components/recipeGroup"
 import SEO from "../components/seo"
 import { graphql} from "gatsby"
 import helpers from "../helpers";
