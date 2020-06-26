@@ -4,16 +4,18 @@ import Img from "gatsby-image"
 import { slide as Menu } from 'react-burger-menu'
 
 const handleClick = (e) => {
-    e.preventDefault();    
+    e.preventDefault();   
     const dropDown = e.target.nextElementSibling;    
     if (dropDown.classList.contains('show')) {
       dropDown.classList.remove('show');
-      dropDown.setAttribute('aria-hidden', false);
+      dropDown.setAttribute('aria-hidden', true);
       e.target.classList.remove('show');
+      e.target.setAttribute('aria-expanded', false);
     } else {
       dropDown.classList.add('show');
-      dropDown.setAttribute('aria-hidden', true);
+      dropDown.setAttribute('aria-hidden', false);
       e.target.classList.add('show');
+      e.target.setAttribute('aria-expanded', true);
     }
     
 }
@@ -72,10 +74,10 @@ const Header = () => (
               { 
                 item.wordpress_children
                 ? <>
-                    <Link to={`/`}>
+                    <Link to={`/`}  onClick={handleClick} className="has-child" aria-haspopup="true" aria-expanded="false">
                       {item.title}
                     </Link>
-                    <ul>
+                    <ul className="dropdown" aria-hidden="true">
                     { 
                       item.wordpress_children.map(childItem => (
                         <li key={childItem.object_slug} >
@@ -97,7 +99,7 @@ const Header = () => (
         <div className="mobile-navbar">          
           <Menu right width={ '100%' }>
             <h1>
-              <Link to="/">
+              <Link to="/" aria-label="Mobile Menu">
                 <Img fixed={data.logoImage.childImageSharp.fixed} alt={data.wordpressSiteMetadata.name} />         
               </Link>
             </h1>
@@ -108,10 +110,10 @@ const Header = () => (
                 { 
                 item.wordpress_children
                 ? <>
-                      <Link to={`/`} onClick={handleClick} className="has-child">
+                      <Link to={`/`} onClick={handleClick} className="has-child" aria-haspopup="true" aria-expanded="false">
                       {item.title}
                       </Link>                   
-                      <ul className="dropdown" aria-hidden="false">
+                      <ul className="dropdown" aria-hidden="true">
                       { 
                         item.wordpress_children.map(childItem => (
                           <li key={childItem.object_slug} >
@@ -136,7 +138,7 @@ const Header = () => (
                     <a href="http://google.com">
                     <Img fixed={data.fbIcon.childImageSharp.fixed} />
                     </a>
-                    <a href="http://google.com">
+                    <a href="http://falcon-agency.com">
                     <Img fixed={data.yTubeIcon.childImageSharp.fixed} />
                     </a>
                 </div>

@@ -7,7 +7,7 @@ module.exports = {
     title: `Gatsby & Wordpress Site`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
-    siteUrl: `https://gatsby-wordpress-benezol.netlify.com/`
+    siteUrl: `https://gatsby-wordpress-benecol.netlify.com/`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

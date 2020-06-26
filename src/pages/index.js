@@ -47,7 +47,7 @@ const HomePage = ({ data }) => {
                             <img src={featuredRecipe.node.acf.main_image.source_url} alt={featuredRecipe.node.title} className="img-fluid" />
                           </div>
                           <div className="featured-posts--item__text">
-                            <div className="category recipes">RECIPES</div>
+                            <div className="category recipes" id="category">RECIPES</div>
                             <div className="title">
                               <Link to={`/recipe/${featuredRecipe.node.slug}`}>
                                 <span>{featuredRecipe.node.title}</span>

@@ -28,6 +28,12 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  &:focus {
+    outline-color: $base-color;
+  }
+}
+
 /*##############  Header Styles ###############*/
 header {
   @include display-flexbox();
@@ -63,6 +69,15 @@ header {
       display: flex;
       @include align-items(center);
       margin: 0 1.5em;
+
+      ul {
+        &.show {
+          display: block;                  
+          li {
+            width: 100%;
+          }
+        }
+      }
       
       &:hover {
         cursor: pointer;
@@ -213,8 +228,13 @@ header {
           color: white;
         }        
       }
-      button:before {
-        font-size: 12px;
+      button{
+        &::before {
+          font-size: 12px;
+        }
+        &:focus {
+          color: darken(red, 5);
+        }        
       }
     }
   }
