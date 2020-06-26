@@ -10,12 +10,14 @@ const handleClick = e => {
   const dropDown = e.target.nextElementSibling
   if (dropDown.classList.contains("show")) {
     dropDown.classList.remove("show")
-    dropDown.setAttribute("aria-hidden", false)
+    dropDown.setAttribute("aria-hidden", true)
     e.target.classList.remove("show")
+    e.target.setAttribute("aria-expanded", false)
   } else {
     dropDown.classList.add("show")
-    dropDown.setAttribute("aria-hidden", true)
+    dropDown.setAttribute("aria-hidden", false)
     e.target.classList.add("show")
+    e.target.setAttribute("aria-expanded", true)
   }
 }
 
@@ -60,8 +62,16 @@ const Header = () => (
             <li key={item.object_slug}>
               {item.wordpress_children ? (
                 <>
-                  <Link to={`/`}>{item.title}</Link>
-                  <ul>
+                  <Link
+                    to={`/`}
+                    onClick={handleClick}
+                    className="has-child"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {item.title}
+                  </Link>
+                  <ul className="dropdown" aria-hidden="true">
                     {item.wordpress_children.map(childItem => (
                       <li key={childItem.object_slug}>
                         <Link to={`/${childItem.object_slug}`}>

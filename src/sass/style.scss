@@ -37,6 +37,12 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  &:focus {
+    outline-color: $base-color;
+  }
+}
+
 /*##############  Header Styles ###############*/
 header {
   @include display-flexbox();
@@ -72,6 +78,15 @@ header {
       display: flex;
       @include align-items(center);
       margin: 0 1.5em;
+
+      ul {
+        &.show {
+          display: block;
+          li {
+            width: 100%;
+          }
+        }
+      }
 
       &:hover {
         cursor: pointer;
@@ -233,10 +248,13 @@ header {
           font-size: 20px;
         }
       }
-      button:before {
-        color: white;
-        font-size: 10px;
-        opacity: 1;
+      button {
+        &::before {
+          font-size: 12px;
+        }
+        &:focus {
+          color: darken(red, 5);
+        }
       }
     }
   }
@@ -349,7 +367,7 @@ main {
 
 .content-wrapper {
   background: url("../images/creative1.png") left 20% no-repeat,
-    url("../images/creative2.png") right 70% no-repeat;  
+    url("../images/creative2.png") right 70% no-repeat;
 
   &.home {
     background: url("../images/creative1.png") left 20% no-repeat, none;
