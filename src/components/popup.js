@@ -31,7 +31,10 @@ const Popup = () => {
         <div className={popClasses}>
             <div className="popup--wrapper">
                 <p>In support of</p>
-                <Img fixed={data.shfImage.childImageSharp.fixed} alt="In support of Singapore Heart Foundation, Your Heart We Care" />
+                <a href="https://www.myheart.org.sg/" target="_blank" rel="noopener noreferrer">
+                    <Img fixed={data.shfImage.childImageSharp.fixed} alt="In support of Singapore Heart Foundation, Your Heart We Care" />
+                </a>
+
                 <button onClick={handlePopup} tabIndex="0" aria-label="Close Popup"></button>
             </div>      
         </div>
