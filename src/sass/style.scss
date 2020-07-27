@@ -2,6 +2,7 @@
 @import "./sizes.scss";
 @import "./colors.scss";
 @import "./mixins.scss";
+$slick-dot-character: "\25CB";
 
 /*##############  Preflight Styles ###############*/
 @font-face {
@@ -16,13 +17,21 @@
   font-style: normal;
   src: url("../fonts/GothamRnd-Medium_0.otf");
 }
+@font-face {
+  font-family: GothamBookLight;
+  font-weight: 900;
+  font-style: normal;
+  src: url("../fonts/GothamRnd-Light_0.otf");
+}
 
 body {
   font-family: GothamBook, sans-serif;
   line-height: 1.5em;
 }
 
-*, ::after, ::before {
+*,
+::after,
+::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -39,13 +48,13 @@ header {
   background-color: white;
   position: fixed;
   z-index: 100;
-  -webkit-box-shadow: 0px 0px 23px -6px rgba(0,0,0,0.52);
-  -moz-box-shadow: 0px 0px 23px -6px rgba(0,0,0,0.52);
-  box-shadow: 0px 0px 23px -6px rgba(0,0,0,0.52);
+  -webkit-box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.52);
+  box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.52);
 
   @include media-query($small) {
     align-self: center;
-    padding: 10px 25px;    
+    padding: 10px 25px;
   }
 
   ul.main-navigation {
@@ -63,12 +72,12 @@ header {
       display: flex;
       @include align-items(center);
       margin: 0 1.5em;
-      
+
       &:hover {
         cursor: pointer;
         ul {
-          display: block;          
-          
+          display: block;
+
           li {
             width: 100%;
           }
@@ -83,12 +92,12 @@ header {
 
       ul {
         display: none;
-        position: absolute;  
+        position: absolute;
         bottom: -80px;
-        padding: 5px;        
-        width: 150px;              
+        padding: 5px;
+        width: 150px;
         background-color: white;
-        border-radius: 5px;        
+        border-radius: 5px;
         z-index: 100;
         transition: all ease-out 300ms;
         @include generic-box-shadow();
@@ -108,7 +117,7 @@ header {
   }
 
   ul.mobile-navigation {
-    padding-top: 1.2em; 
+    padding-top: 1.2em;
     li {
       a {
         text-decoration: none;
@@ -116,21 +125,21 @@ header {
         font-weight: 900;
         padding: 0.8em 0;
         display: block;
-        border-bottom:  1px solid lighten($color: $black, $amount: 80);
+        border-bottom: 1px solid lighten($color: $black, $amount: 80);
         position: relative;
 
         &::after {
           position: absolute;
           right: 0;
           font-size: 1.5em;
-        }   
+        }
 
         &.show {
-          color: $base-color;  
-          border-bottom: none; 
+          color: $base-color;
+          border-bottom: none;
           &::after {
             content: "\2212" !important;
-          } 
+          }
         }
 
         &.has-child {
@@ -146,7 +155,7 @@ header {
 
         &.show {
           display: block;
-          border-bottom:  1px solid lighten($color: $black, $amount: 80);
+          border-bottom: 1px solid lighten($color: $black, $amount: 80);
         }
 
         li {
@@ -172,16 +181,14 @@ header {
 
       &--icons {
         display: flex;
-        @include align-items(center);        
+        @include align-items(center);
       }
     }
   }
-
 }
 
 /*##############  Home Slider Styles ###############*/
 .slick-slider {
-
   .slide {
     position: relative;
 
@@ -190,7 +197,8 @@ header {
         color: $cyan-dark;
       }
 
-      h2, p {
+      h2,
+      p {
         color: $black;
       }
       a {
@@ -211,10 +219,14 @@ header {
       &.slick-active {
         button:before {
           color: white;
-        }        
+          content: "\25CB";
+          font-size: 20px;
+        }
       }
       button:before {
-        font-size: 12px;
+        color: white;
+        font-size: 10px;
+        opacity: 1;
       }
     }
   }
@@ -225,19 +237,21 @@ header {
 
   &__text {
     h2 {
-      font-size: 1.3em;;
+      font-size: 1.8em;
+      font-family: GothamBookLight;
     }
   }
 }
 
 /*##############  Banner Styles ###############*/
-.banner {    
+.banner {
   position: relative;
 
-  &.healthy-tips { // Page Healthy Tips
+  &.healthy-tips {
+    // Page Healthy Tips
     .banner__image {
       height: 320px !important;
-    }    
+    }
   }
 
   &.light {
@@ -292,7 +306,7 @@ header {
       color: transparent;
 
       &::before {
-        content: '';
+        content: "";
         background-color: lighten($color: $black, $amount: 60);
         width: 3px;
         height: 14px;
@@ -303,41 +317,68 @@ header {
         left: 0px;
       }
       &::after {
-        content: '';
+        content: "";
         background-color: lighten($color: $black, $amount: 60);
         width: 3px;
         height: 14px;
         transform: rotate(-45deg);
         display: block;
         position: absolute;
-        top:0;
+        top: 0;
         left: 0px;
       }
     }
   }
 }
 
-
-
 /*##############  Main Styles ###############*/
 main {
   padding-top: 108px;
 }
 
-.content-wrapper {  
-  background: url('../images/creative1.png') left 20% no-repeat, url('../images/creative2.png') right calc(100% - 30%) no-repeat; 
+.content-wrapper {
+  background: url("../images/creative1.png") left 20% no-repeat,
+    url("../images/creative2.png") right 70% no-repeat;
 
-  &.home { // Home Page
-    background-position: left 20%, right bottom -50px;
+  &.home {
+    background: url("../images/creative1.png") left 20% no-repeat, none;
   }
 
-  &.benecol { // Benezol Page
-    background: url('../images/creative1.png') left 20% no-repeat, url('../images/heart-doctor.jpg') right 100px bottom -60px no-repeat; 
+  &.home-heart-happy {
+    background: $grey;
+    padding-bottom: 4em;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: "";
+      right: 0;
+      top: -100px;
+      background: url("../images/creative2.png") center center no-repeat;
+      width: 200px;
+      height: 250px;
+
+      @include media-query($medium-down) {
+        width: 100px;
+        height: 150px;
+        top: -50px;
+        background-size: contain;
+        z-index: 1;
+      }
+    }
+  }
+
+  &.benecol {
+    // Benezol Page
+    background: url("../images/creative1.png") left 20% no-repeat,
+      url("../images/heart-doctor.jpg") right 100px bottom -60px no-repeat;
     background-size: auto auto, 300px auto;
   }
 
-  &.healthy-tips, &.recipes { // Healthy Tips & Recipes Page
-    background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
+  &.healthy-tips,
+  &.recipes {
+    // Healthy Tips & Recipes Page
+    background: url("../images/creative3.png") left -50px bottom -60px no-repeat;
     background-size: 230px auto;
     margin-top: -160px;
     padding-bottom: 100px;
@@ -348,35 +389,40 @@ main {
     }
   }
 
-  &.recipe { // Recipe Detail Page
-    background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
+  &.recipe {
+    // Recipe Detail Page
+    background: url("../images/creative3.png") left -50px bottom -60px no-repeat;
     background-size: 230px auto;
     padding-bottom: 100px;
     position: relative;
   }
 
-  &.faq { // FAQ Page
-    background: url('../images/creative3.png') left -50px bottom -60px no-repeat; 
+  &.faq {
+    // FAQ Page
+    background: url("../images/creative3.png") left -50px bottom -60px no-repeat;
     background-size: 230px auto;
   }
 
   &.dark {
-    background: none; 
-    background-color: $grey;       
+    background: none;
+    background-color: $grey;
     padding-bottom: 4em;
   }
 
   &.blank {
-    background: none; 
+    background: none;
   }
 
   &.post {
+    margin-top: 0;
+
     .wp-block-columns {
       .wp-block-column {
         @include align-self(flex-start);
 
-        &:first-child {          
+        &:first-child {
           padding-left: 0;
+          margin-right: 2em;
           p {
             padding-left: 20%;
           }
@@ -388,8 +434,8 @@ main {
         }
 
         @include media-query($medium-down) {
-          &:first-child {  
-            padding-left: 0.8em;        
+          &:first-child {
+            padding-left: 0.8em;
             p {
               padding-left: 0;
             }
@@ -400,7 +446,6 @@ main {
             }
           }
         }
-
       }
     }
   }
@@ -408,8 +453,9 @@ main {
   @include media-query($medium-down) {
     background-size: 100px auto;
 
-    &.benecol { // Benezol Page
-      background: url('../images/heart-doctor.jpg') right 100px bottom -60px no-repeat; 
+    &.benecol {
+      // Benezol Page
+      background: url("../images/heart-doctor.jpg") right 100px bottom -60px no-repeat;
       background-position: bottom 20px center;
       background-size: 200px auto;
       padding-bottom: 220px;
@@ -417,7 +463,7 @@ main {
   }
 
   &--container {
-    width: $grid-large;
+    width: $grid-xlarge;
     padding-top: 4em;
     margin: 0 auto;
 
@@ -437,7 +483,7 @@ main {
     padding-bottom: 0.5em;
     color: $cyan-dark;
     line-height: 1.2em;
-
+    margin-left: -3px;
   }
 
   h2 {
@@ -448,7 +494,7 @@ main {
     color: $cyan-dark;
 
     @include media-query($medium-down) {
-      font-size: 2.0em;
+      font-size: 2em;
     }
   }
 
@@ -483,9 +529,9 @@ main {
   }
 
   a {
-    background-color: white;      
-    text-decoration: none; 
-    color: $base-color;     
+    background-color: white;
+    text-decoration: none;
+    color: $base-color;
 
     &.button {
       @include button();
@@ -497,7 +543,7 @@ main {
       @include button();
     }
   }
-  
+
   figure {
     &.fixed {
       img {
@@ -508,8 +554,6 @@ main {
       width: 100%;
     }
   }
-
-  
 
   .wp-block-columns {
     @include display-flexbox();
@@ -532,7 +576,11 @@ main {
       &.flex-start {
         align-self: flex-start;
       }
-      
+
+      &:first-child {
+        margin-right: 2em;
+      }
+
       @include media-query($medium-down) {
         &:not(:first-child) {
           padding-top: 20px;
@@ -554,6 +602,7 @@ main {
           display: flex;
           width: 100%;
           padding-bottom: 0.8em;
+          font-size: 0.9em;
 
           @include circle-bullets($pink);
           &::before {
@@ -564,14 +613,15 @@ main {
       }
 
       table {
-        border: 1px solid $base-color;          
+        border: 1px solid $base-color;
         width: 100%;
+        font-size: 0.9em;
 
         tr {
-          &:first-child {                            
-            td {                
-              background-color: darken($base-color, 5);                
-              color: white;                             
+          &:first-child {
+            td {
+              background-color: darken($base-color, 5);
+              color: white;
 
               strong {
                 color: white;
@@ -583,7 +633,7 @@ main {
             border-right: 1px solid $base-color;
             border-bottom: 1px solid $base-color;
             text-align: center;
-            padding: 5px;   
+            padding: 5px;
           }
 
           strong {
@@ -592,29 +642,26 @@ main {
             padding: 10px;
             line-height: 0.2em;
           }
-          
-          
         }
       }
-
     }
   }
-
-  
 }
 
 .featured-posts {
   @include display-flexbox;
+  z-index: 2;
 
   @include media-query($medium-down) {
     flex-direction: column;
-  }  
+  }
 
   &--item {
-    margin : 0.8em;
+    margin: 0.8em;
     background-color: white;
     border-radius: 10px;
     flex-basis: 33%;
+    z-index: 2;
     @include generic-box-shadow();
 
     &__image {
@@ -625,7 +672,7 @@ main {
 
         @include media-query($medium-down) {
           height: auto;
-        }  
+        }
       }
     }
 
@@ -636,7 +683,7 @@ main {
       font-weight: 800;
 
       .title {
-        a{
+        a {
           color: $black;
           font-size: 1em;
           display: flex;
@@ -654,10 +701,10 @@ main {
           }
 
           &::after {
-            content: '\2192';  
+            content: "\2192";
             color: $base-color;
-            font-size: 1.5em; 
-            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 100ms;         
+            font-size: 1.5em;
+            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 100ms;
           }
         }
       }
@@ -668,11 +715,14 @@ main {
 .social-icons {
   list-style: none !important;
   display: flex;
-  
 
   li {
-    margin: 0 0.8em;    
+    margin: 0 0.8em;
     padding: 0 !important;
+
+    &:first-child {
+      margin-left: 0;
+    }
 
     a {
       display: block;
@@ -690,7 +740,6 @@ main {
       }
     }
   }
-  
 }
 /*##############  Recipes Styles ###############*/
 .recipes-listing {
@@ -702,7 +751,7 @@ main {
 
   @include media-query($medium-down) {
     flex-direction: column;
-  }  
+  }
 
   &--item {
     flex-basis: 48%;
@@ -719,11 +768,10 @@ main {
       height: auto;
       padding-bottom: 1.2em;
       border-bottom: 1px solid lighten($color: $black, $amount: 70);
-    }  
+    }
 
     &__image {
       flex-basis: 45%;
-      
 
       a {
         background-color: transparent;
@@ -736,18 +784,18 @@ main {
     }
 
     &__text {
-     flex-basis: 55%;
-     align-self: center;
-     padding: 0.8em;
+      flex-basis: 55%;
+      align-self: center;
+      padding: 0.8em;
 
-     a {
-       color: $cyan-dark;
-       font-weight: 900;
-     }
+      a {
+        color: $cyan-dark;
+        font-weight: 900;
+      }
 
-     .author {
-       @include contributed-by();
-     }
+      .author {
+        @include contributed-by();
+      }
     }
   }
 }
@@ -767,13 +815,13 @@ main {
     grid-column: 1 / 3;
     img {
       width: 100%;
-      border-radius: 10px 0 0 0; 
+      border-radius: 10px 0 0 0;
     }
 
     @include media-query($medium-down) {
       grid-row: 4;
       img {
-        border-radius: 0; 
+        border-radius: 0;
       }
     }
   }
@@ -786,12 +834,12 @@ main {
     border-radius: 0 10px 0 0;
     @include flex-direction(column);
     @include justify-content(center);
-    
+
     .category {
       &.recipes {
         font-size: 0.7em;
         color: inherit;
-      }        
+      }
     }
 
     h1 {
@@ -833,9 +881,9 @@ main {
       padding: 0.8em;
       height: auto;
     }
-    
+
     > div {
-      display: flex;        
+      display: flex;
       @include align-items(center);
 
       span {
@@ -852,14 +900,14 @@ main {
     background-color: $cyan-light;
     height: 80px;
     @include display-flexbox();
-    @include justify-content(center);    
+    @include justify-content(center);
     @include align-items(center);
-    
+
     @include media-query($medium-down) {
       background-color: white;
       padding-bottom: 0.8em;
       height: auto;
-      @include justify-content(flex-start);  
+      @include justify-content(flex-start);
     }
 
     ul.social-icons {
@@ -914,7 +962,7 @@ main {
         list-style: none;
       }
     }
-    
+
     .directions {
       ul {
         list-style: none;
@@ -923,23 +971,23 @@ main {
 
         li {
           display: flex;
-          position: relative; 
-          
+          position: relative;
+
           &::before {
-            content: "";  
+            content: "";
             font-size: 1.2em;
-            font-weight: 900;            
-            z-index: 90;            
+            font-weight: 900;
+            z-index: 90;
             display: inline-block;
-            padding-right: 0.8em; 
-            margin-top: 5px; 
-            background: url('../images/blue-white-bullet.png') no-repeat top;
-            background-size: contain; 
+            padding-right: 0.8em;
+            margin-top: 5px;
+            background: url("../images/blue-white-bullet.png") no-repeat top;
+            background-size: contain;
             margin-right: 0.8em;
           }
 
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             left: 5px;
             top: 14px;
@@ -958,11 +1006,11 @@ main {
           }
         }
       }
-    } 
+    }
 
     .nutrition {
       padding-top: 2.5em;
-      
+
       &-wrapper {
         @include display-flexbox();
 
@@ -972,8 +1020,7 @@ main {
           flex-basis: 125px;
         }
 
-        &--list {          
-
+        &--list {
           ul {
             list-style: none;
             @include display-flexbox();
@@ -989,7 +1036,6 @@ main {
           }
         }
       }
-      
     }
   }
 }
@@ -1004,12 +1050,11 @@ main {
     font-size: 1.5em;
     padding: 2em 0;
   }
-
 }
 
 /*##############  Pagination Styles ###############*/
 .pagination {
-  @include display-flexbox();
+  display: flex;
   @include justify-content(space-between);
   padding: 1.5em 0 4em 0;
 
@@ -1042,18 +1087,17 @@ main {
     &[disabled] {
       background-color: lighten($color: $black, $amount: 60);
       color: white;
-      &:hover{
+      &:hover {
         box-shadow: none;
         cursor: default;
       }
     }
 
-    &:hover{
+    &:hover {
       @include generic-box-shadow();
     }
   }
 }
-
 
 /*##############  Footer Styles ###############*/
 footer {
@@ -1062,25 +1106,24 @@ footer {
 
   .wrapper {
     @include center-wrapper();
-    
+
     @include media-query($medium-down) {
       width: 100%;
     }
 
     .row {
       @include display-flexbox();
-      padding: 2em 0; 
+      padding: 2em 0;
 
       @include media-query($small) {
         @include flex-direction(column);
       }
 
       @include media-query($medium-down) {
-        padding: 1.3em;        
+        padding: 1.3em;
       }
 
       .col {
-
         &:first-child {
           @include flex-basis(45%);
           padding-right: 10%;
@@ -1111,10 +1154,10 @@ footer {
 
           &:first-child {
             @include flex-basis(50%);
-            padding-right: 0.8em;             
+            padding-right: 0.8em;
           }
 
-          &:last-child {            
+          &:last-child {
             align-self: flex-end;
             display: flex;
             @include justify-content(center);
@@ -1129,11 +1172,11 @@ footer {
       }
     }
 
-    .footer-navigation {  
-      padding-top: 60px;    
+    .footer-navigation {
+      padding-top: 60px;
 
       @include media-query($small) {
-        padding-top: 0px; 
+        padding-top: 0px;
       }
 
       li {
@@ -1147,11 +1190,10 @@ footer {
           color: $base-color;
           text-decoration: none;
           font-weight: 900;
-        }        
+        }
       }
     }
   }
-
 }
 
 /*##############  Helper Styles ###############*/
@@ -1174,7 +1216,7 @@ footer {
   height: auto;
 }
 .category {
-  font-size: 0.7em;        
+  font-size: 0.7em;
   color: $green;
 
   &.recipes {
@@ -1187,7 +1229,7 @@ footer {
 
 .category {
   font-weight: 800;
-  font-size: 0.7em;        
+  font-size: 0.7em;
   color: $green;
 
   &.recipes {
@@ -1195,10 +1237,7 @@ footer {
   }
 }
 
-
-
 /*##############  Media Styles ###############*/
-
 
 @include media-query($medium-up) {
   .mobile-navbar {
