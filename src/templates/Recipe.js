@@ -10,9 +10,15 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
   const currentUrl = location.href ? location.href : ""
   const { prev, next } = pageContext
 
+  //console.log(data.wordpressWpRecipe.title.replace(/&.*;/g, ""))
+
   return (
     <Layout>
-      <SEO title={"Recipes: " + data.wordpressWpRecipe.title} />
+      <SEO
+        title={
+          "Recipes: " + data.wordpressWpRecipe.title.replace(/&[*];>/g, "")
+        }
+      />
       <div className="content-wrapper recipe">
         <div className="content-wrapper--container">
           <div className="recipe-wrapper">
@@ -24,7 +30,11 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
             </div>
             <div className="recipe-wrapper--text">
               <div className="category recipes">RECIPES</div>
-              <h1>{data.wordpressWpRecipe.title}</h1>
+              <h1
+                dangerouslySetInnerHTML={{
+                  __html: data.wordpressWpRecipe.title,
+                }}
+              />
               <div
                 className="author"
                 dangerouslySetInnerHTML={{
@@ -117,7 +127,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
             </div>
             <div className="col">
               <div className="directions">
-                <h2>Direction</h2>
+                <h2>Directions</h2>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: data.wordpressWpRecipe.acf.directions,

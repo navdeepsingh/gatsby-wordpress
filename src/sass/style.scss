@@ -796,7 +796,8 @@ main {
       align-self: center;
       padding: 0.8em 1.5em;
 
-      h2 {
+      h2,
+      h3 {
         font-size: 1.2em;
       }
 
@@ -960,8 +961,7 @@ main {
 
     h2 {
       color: $cyan-dark;
-      font-size: 1.2em;
-      margin-bottom: 1em;
+      font-size: 1.7em;
     }
 
     ul {
@@ -1056,12 +1056,20 @@ main {
 .recipes-likes {
   border-top: 1px solid lighten($color: $black, $amount: 65);
 
+  .recipes-listing--item {
+    box-shadow: 4px 4px 43px -8px rgba(0, 0, 0, 0.48);
+  }
+
   h3 {
     text-align: center;
     font-family: GothamBookMedium;
     color: $cyan-dark;
     font-size: 1.5em;
     padding: 2em 0;
+  }
+
+  h4 {
+    font-size: 1.2em;
   }
 }
 
@@ -1108,6 +1116,61 @@ main {
 
     &:hover {
       @include generic-box-shadow();
+    }
+  }
+}
+
+// FAQ Accordion
+
+.faq-accordion {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 6em;
+
+  li {
+    list-style: none;
+    border-bottom: 1px solid #eeecec;
+    padding: 1em 0;
+
+    button {
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      background-color: transparent;
+      border: none;
+      font-family: GothamBookMedium, sans-serif;
+      color: $cyan-dark;
+      font-size: 1.3em;
+      line-height: 1.2em;
+      padding: 0;
+      outline: none;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 1.5em;
+        color: #00afbc;
+      }
+
+      &[aria-expanded="false"]:after {
+        content: "+";
+      }
+      &[aria-expanded="true"]:after {
+        content: "\2212";
+      }
+    }
+
+    .content {
+      padding-top: 0.5em;
+
+      p {
+        padding-bottom: 0.8em;
+      }
+      &.hide {
+        display: none;
+      }
     }
   }
 }
