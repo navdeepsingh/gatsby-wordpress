@@ -440,6 +440,7 @@ main {
         @include media-query($medium-down) {
           &:first-child {
             padding-left: 0.8em;
+            margin-right: 0;
             p {
               padding-left: 0;
             }
@@ -586,6 +587,14 @@ main {
       }
 
       @include media-query($medium-down) {
+        &:first-child {
+          margin-right: 0;
+          overflow: hidden;
+          margin-right: 0;
+          figure {
+            margin-right: -44px;
+          }
+        }
         &:not(:first-child) {
           padding-top: 20px;
         }
@@ -653,31 +662,31 @@ main {
 }
 
 .featured-posts {
-  @include display-flexbox;
-  z-index: 2;
+  .slick-initialized {
+    z-index: 2;
 
-  @include media-query($medium-down) {
-    flex-direction: column;
+    .slick-slide {
+      > div {
+        margin: 0.8em;
+        outline: none;
+      }
+    }
   }
 
   &--item {
-    margin: 0.8em;
     background-color: white;
     border-radius: 10px;
-    flex-basis: 33%;
     z-index: 2;
+    outline: none;
     @include generic-box-shadow();
 
     &__image {
       img {
         border-radius: 10px;
-        height: 238px;
+        height: 280px;
         object-fit: cover;
-
-        @include media-query($medium-down) {
-          height: auto;
-        }
       }
+      cursor: move;
     }
 
     &__text {
@@ -685,6 +694,7 @@ main {
       background-color: white;
       border-radius: 0 0 10px 10px;
       font-weight: 800;
+      height: 100px;
 
       .title {
         a {
@@ -1349,15 +1359,15 @@ footer {
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
+  width: 26px;
+  height: 17px;
   right: 36px;
-  top: 36px;
+  top: 46px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: $black;
+  background: $base-color;
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -1406,6 +1416,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
+  outline: none;
+  box-shadow: none;
 }
 
 /* Styling of overlay */
