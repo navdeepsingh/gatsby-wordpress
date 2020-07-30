@@ -15,7 +15,7 @@ const PostsPage = ({ data }) => {
         additionalClass="healthy-tips"
       />
       <div className="content-wrapper healthy-tips">
-        <div class="content-wrapper--container">
+        <div className="content-wrapper--container">
           <div className="featured-posts">
             {featuredPosts.map(featuredPost => {
               return (

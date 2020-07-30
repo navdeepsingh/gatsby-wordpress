@@ -15,7 +15,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         description={data.wordpressPost.excerpt}
       />
       <div className="content-wrapper healthy-tips post">
-        <div class="content-wrapper--container">
+        <div className="content-wrapper--container">
           <div className="category">HEALTHY TIPS</div>
           <h1>{data.wordpressPost.title}</h1>
           <ul className="social-icons">
