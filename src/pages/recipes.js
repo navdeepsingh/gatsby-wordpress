@@ -9,8 +9,10 @@ import helpers from "../helpers"
 const RecipesPage = ({ data }) => {
   const { edges: recipes } = data.allWordpressWpRecipe
   const [page, setPage] = useState(1)
-  const chunksPerPage = process.env.GATSBY_RECIPES_PER_PAGE
-  const [allLoaded, setAllLoaded] = useState(0)
+  const chunksPerPage = parseInt(process.env.GATSBY_RECIPES_PER_PAGE)
+  const [allLoaded, setAllLoaded] = useState(() =>
+    recipes.length <= chunksPerPage ? 1 : 0
+  )
 
   const RenderRecipes = () => {
     const chunks = helpers.chunkArray(Array.from(recipes), chunksPerPage)

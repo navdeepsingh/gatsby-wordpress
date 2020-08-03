@@ -666,6 +666,14 @@ main {
     @include display-flexbox();
     justify-content: space-between;
     flex-wrap: wrap;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
+
+    &--item {
+      margin-bottom: 1.8em;
+    }
   }
 }
 
