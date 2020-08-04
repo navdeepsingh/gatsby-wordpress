@@ -186,6 +186,10 @@ header {
       &--icons {
         display: flex;
         @include align-items(center);
+
+        a {
+          color: $base-color;
+        }
       }
     }
   }
@@ -673,6 +677,22 @@ main {
 
     &--item {
       margin-bottom: 1.8em;
+
+      &__image {
+        cursor: default;
+        overflow: hidden;
+
+        img {
+          -webkit-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+          -moz-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+          box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+          transition: all ease-in 200ms;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
     }
   }
 }
@@ -698,8 +718,9 @@ main {
     @include generic-box-shadow();
 
     &__image {
+      border-radius: 10px;
+
       img {
-        border-radius: 10px;
         height: 280px;
         object-fit: cover;
       }
@@ -1323,9 +1344,13 @@ footer {
         }
 
         a {
-          color: $base-color;
+          color: $footer-nav-link;
           text-decoration: none;
           font-weight: 900;
+
+          &:hover {
+            color: $footer-nav-hover-link;
+          }
         }
       }
     }
@@ -1344,6 +1369,11 @@ footer {
   &--icons {
     a {
       padding-left: 0.8em;
+      color: $footer-social;
+
+      &:hover {
+        color: $footer-social-hover;
+      }
     }
   }
 }
