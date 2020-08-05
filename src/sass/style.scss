@@ -475,6 +475,7 @@ main {
     width: $grid-xlarge;
     padding-top: 4em;
     margin: 0 auto;
+    overflow: hidden;
 
     &:not(:first-child) {
       padding-top: 0;
@@ -715,6 +716,7 @@ main {
     z-index: 2;
     outline: none;
     flex-basis: 32%;
+    overflow: hidden;
     @include generic-box-shadow();
 
     &__image {
