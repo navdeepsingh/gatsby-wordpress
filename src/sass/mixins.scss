@@ -200,9 +200,14 @@
       padding: 10px 30px;
       border-radius: 30px;
       display: inline-block;
-      color: darken($base-color, 5);
+      color: $slider-btn-color;
       text-decoration: none;
       font-weight: 900;
+      transition: transform 100ms ease-out;
+
+      &:hover {
+        transform: scale(1.02);
+      }
     }
 
     @include media-query($medium-down) {
@@ -231,6 +236,7 @@
     color: $color;
     display: inline-block;
     padding-right: 0.8em;
+    margin-top: -2px;
   }
 }
 
@@ -242,6 +248,10 @@
   background-color: darken($base-color, 5);
   color: white;
   font-weight: 800;
+
+  &:hover {
+    background-color: $button-hover-color;
+  }
 }
 
 @mixin generic-box-shadow() {
