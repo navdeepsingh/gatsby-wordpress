@@ -350,6 +350,7 @@ main {
 .content-wrapper {
   background: url("../images/creative1.png") left 20% no-repeat,
     url("../images/creative2.png") right 70% no-repeat;
+  overflow: hidden;
 
   &.home {
     background: url("../images/creative1.png") left 20% no-repeat, none;

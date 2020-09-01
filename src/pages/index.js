@@ -20,29 +20,23 @@ const HomePage = ({ data }) => {
       </div>
 
       <div className="content-wrapper home-heart-happy">
-        <div
-          className="content-wrapper--container"
-          data-sal="slide-left"
-          data-sal-delay="10"
-          data-sal-duration="800"
-          data-sal-easing="ease"
-        >
-          <h2>Heart Happy</h2>
-          <FeaturedPosts posts={featuredPosts} recipes={featuredRecipes} />
+        <div data-sal="slide-left" data-sal-delay="300" data-sal-easing="ease">
+          <div className="content-wrapper--container">
+            <h2>Heart Happy</h2>
+            <FeaturedPosts posts={featuredPosts} recipes={featuredRecipes} />
+          </div>
         </div>
       </div>
 
       <div className="content-wrapper blank">
-        <div
-          className="content-wrapper--container"
-          data-sal="slide-left"
-          data-sal-delay="10"
-          data-sal-duration="1200"
-          data-sal-easing="ease"
-          dangerouslySetInnerHTML={{
-            __html: data.wordpressPage.acf.footer_content,
-          }}
-        />
+        <div data-sal="slide-right" data-sal-delay="300" data-sal-easing="ease">
+          <div
+            className="content-wrapper--container"
+            dangerouslySetInnerHTML={{
+              __html: data.wordpressPage.acf.footer_content,
+            }}
+          />
+        </div>
       </div>
     </Layout>
   )
