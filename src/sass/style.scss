@@ -349,8 +349,7 @@ main {
 
 .content-wrapper {
   background: url("../images/creative1.png") left 20% no-repeat,
-    url("../images/creative2.png") right 70% no-repeat;
-  overflow: hidden;
+    url("../images/creative2.png") right 70% no-repeat;  
 
   &.home {
     background: url("../images/creative1.png") left 20% no-repeat, none;
@@ -697,15 +696,27 @@ main {
         cursor: default;
         overflow: hidden;
 
+        &:hover {
+          img {
+            transform: scale(1.05);
+          }
+
+          ~ div {
+            .title {
+              a {
+                &::after {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+        }
+
         img {
           -webkit-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
           -moz-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
           box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
           transition: all ease-in 200ms;
-
-          &:hover {
-            transform: scale(1.1);
-          }
         }
       }
     }
@@ -730,14 +741,12 @@ main {
     z-index: 2;
     outline: none;
     flex-basis: 32%;
-    overflow: hidden;
     @include generic-box-shadow();
 
     &__image {
       border-radius: 10px;
 
       img {
-        height: 280px;
         object-fit: cover;
       }
       cursor: move;
@@ -764,7 +773,7 @@ main {
 
           &:hover {
             &::after {
-              margin-right: 10px;
+              margin-right: 0px;
             }
           }
 
@@ -772,7 +781,8 @@ main {
             content: "\2192";
             color: $base-color;
             font-size: 1.5em;
-            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 100ms;
+            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 300ms;
+            margin-right: 0.2em;
           }
         }
       }
