@@ -24,13 +24,11 @@ const PostsPage = ({ data }) => {
                   key={featuredPost.node.wordpress_id}
                 >
                   <div className="featured-posts--item__image">
-                    <Link to={`/post/${featuredPost.node.slug}`}>
-                      <img
-                        src={featuredPost.node.featured_media.source_url}
-                        alt={featuredPost.node.title}
-                        className="img-fluid"
-                      />
-                    </Link>
+                    <img
+                      src={featuredPost.node.featured_media.source_url}
+                      alt={featuredPost.node.title}
+                      className="img-fluid"
+                    />
                   </div>
                   <div className="featured-posts--item__text">
                     <div className="title">

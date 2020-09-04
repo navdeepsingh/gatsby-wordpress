@@ -21,6 +21,18 @@ const handleClick = e => {
   }
 }
 
+// const handleBlur = e => {
+//   e.preventDefault()
+//   const dropDown = e.target
+//   console.log(dropDown.nextElement)
+//   if (dropDown.nextElement === undefined) {
+//     dropDown.classList.remove("show")
+//     dropDown.setAttribute("aria-hidden", true)
+//     e.target.classList.remove("show")
+//     e.target.setAttribute("aria-expanded", false)
+//   }
+// }
+
 const Header = () => (
   <StaticQuery
     query={graphql`

@@ -235,6 +235,7 @@ header {
   .slick-dots {
     left: 20px;
     top: 50%;
+    bottom: auto;
     width: auto;
 
     li {
@@ -250,6 +251,8 @@ header {
       button {
         &::before {
           font-size: 12px;
+          color: white;
+          opacity: 0.9;
         }
         &:focus {
           color: darken(red, 5);
@@ -708,34 +711,6 @@ main {
 
     &--item {
       margin-bottom: 1.8em;
-
-      &__image {
-        cursor: default;
-        overflow: hidden;
-
-        &:hover {
-          img {
-            transform: scale(1.05);
-          }
-
-          ~ div {
-            .title {
-              a {
-                &::after {
-                  margin-right: 0;
-                }
-              }
-            }
-          }
-        }
-
-        img {
-          -webkit-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
-          -moz-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
-          box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
-          transition: all ease-in 200ms;
-        }
-      }
     }
   }
 }
@@ -762,11 +737,33 @@ main {
 
     &__image {
       border-radius: 10px;
+      overflow: hidden;
+      height: 280px;
 
       img {
         object-fit: cover;
+        height: 100%;
+        -webkit-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+        -moz-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+        box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+        transition: all ease-in 200ms;
       }
-      cursor: move;
+
+      &:hover {
+        img {
+          transform: scale(1.05);
+        }
+
+        ~ div {
+          .title {
+            a {
+              &::after {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
     }
 
     &__text {
