@@ -37,6 +37,12 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  &:focus {
+    outline-color: $base-color;
+  }
+}
+
 /*##############  Header Styles ###############*/
 header {
   @include display-flexbox();
@@ -73,6 +79,14 @@ header {
       @include align-items(center);
       margin: 0 1.5em;
 
+      ul {
+        &.show {
+          display: block;
+          li {
+            width: 100%;
+          }
+        }
+      }
       &:hover {
         cursor: pointer;
         ul {
@@ -221,6 +235,7 @@ header {
   .slick-dots {
     left: 20px;
     top: 50%;
+    bottom: auto;
     width: auto;
 
     li {
@@ -233,10 +248,15 @@ header {
           font-size: 20px;
         }
       }
-      button:before {
-        color: white;
-        font-size: 10px;
-        opacity: 1;
+      button {
+        &::before {
+          font-size: 12px;
+          color: white;
+          opacity: 0.9;
+        }
+        &:focus {
+          color: darken(red, 5);
+        }
       }
     }
   }
@@ -350,7 +370,6 @@ main {
 .content-wrapper {
   background: url("../images/creative1.png") left 20% no-repeat,
     url("../images/creative2.png") right 70% no-repeat;
-  overflow: hidden;
 
   &.home {
     background: url("../images/creative1.png") left 20% no-repeat, none;
@@ -692,22 +711,6 @@ main {
 
     &--item {
       margin-bottom: 1.8em;
-
-      &__image {
-        cursor: default;
-        overflow: hidden;
-
-        img {
-          -webkit-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
-          -moz-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
-          box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
-          transition: all ease-in 200ms;
-
-          &:hover {
-            transform: scale(1.1);
-          }
-        }
-      }
     }
   }
 }
@@ -730,17 +733,37 @@ main {
     z-index: 2;
     outline: none;
     flex-basis: 32%;
-    overflow: hidden;
     @include generic-box-shadow();
 
     &__image {
       border-radius: 10px;
+      overflow: hidden;
+      height: 280px;
 
       img {
-        height: 280px;
         object-fit: cover;
+        height: 100%;
+        -webkit-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+        -moz-box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+        box-shadow: inset 4px 2px 34px -4px rgba(0, 0, 0, 0.44);
+        transition: all ease-in 200ms;
       }
-      cursor: move;
+
+      &:hover {
+        img {
+          transform: scale(1.05);
+        }
+
+        ~ div {
+          .title {
+            a {
+              &::after {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
     }
 
     &__text {
@@ -764,7 +787,7 @@ main {
 
           &:hover {
             &::after {
-              margin-right: 10px;
+              margin-right: 0px;
             }
           }
 
@@ -772,7 +795,8 @@ main {
             content: "\2192";
             color: $base-color;
             font-size: 1.5em;
-            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 100ms;
+            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 300ms;
+            margin-right: 0.2em;
           }
         }
       }
