@@ -5,8 +5,7 @@ import { slide as Menu } from "react-burger-menu"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faYoutube } from "@fortawesome/free-brands-svg-icons"
 
-const handleClick = e => {
-  e.preventDefault()
+const clickEvent = e => {
   const dropDown = e.target.nextElementSibling
   if (dropDown.classList.contains("show")) {
     dropDown.classList.remove("show")
@@ -21,17 +20,18 @@ const handleClick = e => {
   }
 }
 
-// const handleBlur = e => {
-//   e.preventDefault()
-//   const dropDown = e.target
-//   console.log(dropDown.nextElement)
-//   if (dropDown.nextElement === undefined) {
-//     dropDown.classList.remove("show")
-//     dropDown.setAttribute("aria-hidden", true)
-//     e.target.classList.remove("show")
-//     e.target.setAttribute("aria-expanded", false)
-//   }
-// }
+const handleClick = e => {
+  e.preventDefault()
+  clickEvent(e);
+}
+
+const handleFocus = e => {
+  console.log(e.keyCode);
+  if (e.keyCode === 32) {
+    e.preventDefault();
+    clickEvent(e);
+  }
+}
 
 const Header = () => (
   <StaticQuery
@@ -75,8 +75,8 @@ const Header = () => (
               {item.wordpress_children ? (
                 <>
                   <Link
-                    to={`/`}
-                    onClick={handleClick}
+                    to={'/'}
+                    onKeyUp={handleFocus}
                     className="has-child"
                     aria-haspopup="true"
                     aria-expanded="false"
@@ -94,8 +94,8 @@ const Header = () => (
                   </ul>
                 </>
               ) : (
-                <Link to={`/${item.object_slug}`}>{item.title}</Link>
-              )}
+                  <Link to={`/${item.object_slug}`}>{item.title}</Link>
+                )}
             </li>
           ))}
         </ul>
@@ -132,8 +132,8 @@ const Header = () => (
                       </ul>
                     </>
                   ) : (
-                    <Link to={`/${item.object_slug}`}>{item.title}</Link>
-                  )}
+                      <Link to={`/${item.object_slug}`}>{item.title}</Link>
+                    )}
                 </li>
               ))}
             </ul>
