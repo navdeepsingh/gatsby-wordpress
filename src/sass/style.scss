@@ -828,7 +828,8 @@ main {
       transition: all ease-out 300ms;
 
       &:hover {
-        @include generic-box-shadow();
+         color:#ffffff; 
+         background-color: $hover-link;
       }
     }
   }
@@ -1205,8 +1206,31 @@ main {
 
     &:focus,
     &:hover {
-      text-decoration: none;
+      color: $button-hover-color;
+      
+      &:after{
+        padding-right: 0px;
+      }
     }
+
+    &.next {
+      &:after{
+        content: "\2192";
+        padding-left: 10px;
+        padding-right: 10px;
+        transition: padding .35s ease-in-out;
+      }
+    }
+
+    &.prev {
+      &:before{
+        content: "\2190";
+        padding-right: 10px;
+        padding-left: 10px;
+        transition: padding .35s ease-in-out;
+      }
+    }
+    
   }
 }
 

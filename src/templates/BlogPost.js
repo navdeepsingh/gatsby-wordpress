@@ -3,6 +3,9 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebookF, faTwitter, faPinterestP } from "@fortawesome/free-brands-svg-icons"
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const currentUrl = location.href ? location.href : ""
@@ -25,7 +28,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Img fixed={data.fbIcon.childImageSharp.fixed} />
+                <FontAwesomeIcon icon={faFacebookF} size="md" />
               </a>
             </li>
             <li>
@@ -34,7 +37,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Img fixed={data.twIcon.childImageSharp.fixed} />
+                <FontAwesomeIcon icon={faTwitter} size="md" />
               </a>
             </li>
             <li>
@@ -43,7 +46,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Img fixed={data.piIcon.childImageSharp.fixed} />
+                <FontAwesomeIcon icon={faPinterestP} size="md" />
               </a>
             </li>
             <li>
@@ -52,7 +55,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Img fixed={data.emailIcon.childImageSharp.fixed} />
+                <FontAwesomeIcon icon={faEnvelope} size="md" />
               </a>
             </li>
           </ul>
@@ -66,18 +69,16 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <div className="content-wrapper--container pagination">
           <div>
             {prev && (
-              <Link to={`post/${prev.slug}`} rel="prev">
-                {" "}
-                ← Previous{" "}
+              <Link to={`post/${prev.slug}`} className="prev" rel="prev">
+                Previous
               </Link>
             )}
           </div>
 
           <div style={{ justifySelf: "flex-end" }}>
             {next && (
-              <Link to={`post/${next.slug}`} rel="next">
-                {" "}
-                Next →{" "}
+              <Link to={`post/${next.slug}`} className="next" rel="next">
+                Next
               </Link>
             )}
           </div>
@@ -88,35 +89,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 }
 export default BlogPostTemplate
 export const query = graphql`
-  query($id: Int!) {
-    fbIcon: file(relativePath: { eq: "fb-blue.png" }) {
-      childImageSharp {
-        fixed(width: 12) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    twIcon: file(relativePath: { eq: "tw-blue.png" }) {
-      childImageSharp {
-        fixed(width: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    piIcon: file(relativePath: { eq: "pi-blue.png" }) {
-      childImageSharp {
-        fixed(height: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    emailIcon: file(relativePath: { eq: "email-blue.png" }) {
-      childImageSharp {
-        fixed(width: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
+  query($id: Int!) {    
     wordpressPost(wordpress_id: { eq: $id }) {
       title
       slug
