@@ -4,7 +4,10 @@ import Layout from "../components/layout.js"
 import RecipeLike from "../components/recipeLike"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import "../sass/style.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebookF, faTwitter, faPinterestP } from "@fortawesome/free-brands-svg-icons"
+import { faEnvelope, faPrint } from '@fortawesome/free-solid-svg-icons'
+
 
 const RecipeTemplate = ({ data, pageContext, location }) => {
   const currentUrl = location.href ? location.href : ""
@@ -72,7 +75,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
               <ul className="social-icons">
                 <li>
                   <a href="/" rel="noopener noreferrer" target="_blank">
-                    <Img fixed={data.printIcon.childImageSharp.fixed} />
+                    <FontAwesomeIcon icon={faPrint} size="md" />
                   </a>
                 </li>
                 <li>
@@ -81,7 +84,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Img fixed={data.fbIcon.childImageSharp.fixed} />
+                    <FontAwesomeIcon icon={faFacebookF} size="md" />
                   </a>
                 </li>
                 <li>
@@ -90,7 +93,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Img fixed={data.twIcon.childImageSharp.fixed} />
+                    <FontAwesomeIcon icon={faTwitter} size="md" />
                   </a>
                 </li>
                 <li>
@@ -99,7 +102,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Img fixed={data.piIcon.childImageSharp.fixed} />
+                    <FontAwesomeIcon icon={faPinterestP} size="md" />
                   </a>
                 </li>
                 <li>
@@ -108,7 +111,7 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Img fixed={data.emailIcon.childImageSharp.fixed} />
+                    <FontAwesomeIcon icon={faEnvelope} size="md" />
                   </a>
                 </li>
               </ul>
@@ -255,41 +258,6 @@ export const query = graphql`
           ...GatsbyImageSharpFixed
         }
       }
-    }
-    printIcon: file(relativePath: { eq: "print-icon.png" }) {
-      childImageSharp {
-        fixed(width: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    fbIcon: file(relativePath: { eq: "fb-blue.png" }) {
-      childImageSharp {
-        fixed(width: 12) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    twIcon: file(relativePath: { eq: "tw-blue.png" }) {
-      childImageSharp {
-        fixed(width: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    piIcon: file(relativePath: { eq: "pi-blue.png" }) {
-      childImageSharp {
-        fixed(height: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    emailIcon: file(relativePath: { eq: "email-blue.png" }) {
-      childImageSharp {
-        fixed(width: 18) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
+    }    
   }
 `

@@ -104,7 +104,7 @@ header {
         text-decoration: none;
 
         &:hover {
-          color: $hover-link;
+          color: $button-color;
         }
       }
 
@@ -495,7 +495,8 @@ main {
   }
 
   &--container {
-    width: $grid-xlarge;
+    max-width: $grid-xlarge;
+    width: 100%;
     padding-top: 4em;
     margin: 0 auto;
     overflow: hidden;
@@ -821,6 +822,7 @@ main {
       width: 30px;
       height: 30px;
       border-radius: 30px;
+      color: $button-color;
       background-color: $cyan-light;
       display: flex;
       @include justify-content(center);
@@ -829,7 +831,7 @@ main {
 
       &:hover {
          color:#ffffff; 
-         background-color: $hover-link;
+         background-color: $button-color;
       }
     }
   }
@@ -869,21 +871,33 @@ main {
 
     &__image {
       flex-basis: 45%;
+      height: 153px;
+      overflow: hidden;
+      border-radius: 10px;
 
       a {
         background-color: transparent;
         display: block;
         height: 100%;
+
         @include media-query($medium-down) {
           display: flex;
           align-items: center;
         }
 
+        &:hover {
+          img {
+            transform: scale(1.05);
+          }
+        }
+
         img {
-          border-radius: 10px;
+          
           width: 100%;
           object-fit: cover;
           height: auto;
+          transition: all ease-in 200ms;
+
           @include media-query($medium-down) {
             height: 120px;
           }
@@ -1029,11 +1043,17 @@ main {
       @include justify-content(flex-start);
     }
 
-    ul.social-icons {
+    .social-icons {
       @include justify-content(flex-end);
       li {
         a {
-          background-color: white;
+          color: $button-color;
+          background-color: $cyan-light;          
+
+          &:hover {
+            color: white;
+            background-color: $button-color;
+          }
 
           @include media-query($medium-down) {
             background-color: $cyan-light;
@@ -1255,7 +1275,7 @@ main {
     font-weight: 900;
     border: none;
     background-color: $cyan-light;
-    color: $base-color;
+    color: $button-color;
     padding: 0.8em 2em;
     border-radius: 20px;
     cursor: pointer;
@@ -1271,7 +1291,8 @@ main {
     }
 
     &:hover {
-      @include generic-box-shadow();
+      color: #ffffff;
+      background-color: $button-color;
     }
   }
 }
@@ -1346,7 +1367,8 @@ footer {
   color: white;
 
   .wrapper {
-    @include center-wrapper();
+    max-width: $grid-xlarge;
+    width: 100%;
 
     @include media-query($medium-down) {
       width: 100%;
