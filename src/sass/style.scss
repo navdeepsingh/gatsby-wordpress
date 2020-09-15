@@ -1197,37 +1197,50 @@ main {
   display: flex;
   @include justify-content(space-between);
   padding: 1.5em 0.8em 4em 0.8em;
-
+  a:hover::after{
+    right: 0;
+  }
   a {
     font-size: 1.3em;
     font-weight: 900;
     text-decoration: none;
     color: $base-color;
+    position: relative;
 
     &:focus,
     &:hover {
       color: $button-hover-color;
-      
-      &:after{
-        padding-right: 0px;
-      }
     }
 
     &.next {
+      padding-right: 40px;
+
+      &:hover::after{
+        right: 0px;
+      }
+
       &:after{
-        content: "\2192";
-        padding-left: 10px;
-        padding-right: 10px;
-        transition: padding .35s ease-in-out;
+        content: "\2192";        
+        transition: all .35s ease-in-out;
+        position: absolute;
+        display: inline-block;
+        right: 5px;
       }
     }
 
     &.prev {
+      padding-left: 40px;
+
+      &:hover::before{
+        left: 0px;
+      }
+
       &:before{
         content: "\2190";
-        padding-right: 10px;
-        padding-left: 10px;
-        transition: padding .35s ease-in-out;
+        transition: all .35s ease-in-out;
+        position: absolute;
+        display: inline-block;
+        left: 5px;
       }
     }
     
