@@ -154,21 +154,19 @@ const RecipeTemplate = ({ data, pageContext, location }) => {
             </div>
           </div>
 
-          <div className="pagination">
+          <div className="content-wrapper--container pagination">
             <div>
               {prev && (
-                <Link to={`recipe/${prev.slug}`} rel="prev">
-                  {" "}
-                  ← Previous{" "}
+                <Link to={`recipe/${prev.slug}`} className="prev" rel="prev">
+                  Previous
                 </Link>
               )}
             </div>
 
             <div style={{ justifySelf: "flex-end" }}>
               {next && (
-                <Link to={`recipe/${next.slug}`} rel="next">
-                  {" "}
-                  Next →{" "}
+                <Link to={`recipe/${next.slug}`} className="next" rel="next">
+                  Next
                 </Link>
               )}
             </div>
